@@ -13,6 +13,41 @@ namespace Kalendarz
 
             NextMonthCalendar.MaxDate = startDate.AddMonths(2).AddDays(-1);
             NextMonthCalendar.MinDate = startDate.AddMonths(1);
+
+            customCalendar1.DateChanged += (calendar, time) =>
+            {
+                PrevMonthCalendar.MaxDate = DateTime.MaxValue;
+                PrevMonthCalendar.MinDate = time.AddMonths(-1);
+                PrevMonthCalendar.MaxDate = time.AddDays(-1);
+
+                NextMonthCalendar.MinDate = DateTime.UnixEpoch;
+                NextMonthCalendar.MaxDate = time.AddMonths(2).AddDays(-1);
+                NextMonthCalendar.MinDate = time.AddMonths(1);
+            };
+        }
+
+        private void CurrMonthPanel_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            customCalendar1.SelectedDay = DateTime.Today;
+        }
+
+        private void PrevMonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            customCalendar1.SelectedDay = PrevMonthCalendar.SelectionStart;
+        }
+
+        private void NextMonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            customCalendar1.SelectedDay = NextMonthCalendar.SelectionStart;
+        }
+
+        private void ToolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }
