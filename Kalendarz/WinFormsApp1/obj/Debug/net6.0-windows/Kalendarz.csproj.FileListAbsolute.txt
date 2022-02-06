@@ -1,4 +1,3 @@
-G:\Uniwersytet\Programowanie Obiektowe\CSharp\projekt\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.csproj.AssemblyReference.cache
 G:\Uniwersytet\Programowanie Obiektowe\CSharp\projekt\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.Form1.resources
 G:\Uniwersytet\Programowanie Obiektowe\CSharp\projekt\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.Properties.Resources.resources
 G:\Uniwersytet\Programowanie Obiektowe\CSharp\projekt\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.csproj.GenerateResource.cache
@@ -18,3 +17,5 @@ G:\Uniwersytet\Programowanie Obiektowe\CSharp\projekt\Kalendarz\WinFormsApp1\obj
 G:\Uniwersytet\Programowanie Obiektowe\CSharp\projekt\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.genruntimeconfig.cache
 G:\Uniwersytet\Programowanie Obiektowe\CSharp\projekt\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.CustomCalendar.resources
 G:\Uniwersytet\Programowanie Obiektowe\CSharp\projekt\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.CalendarDay.resources
+G:\Uniwersytet\Programowanie Obiektowe\CSharp\projekt\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Markdig.dll
+G:\Uniwersytet\Programowanie Obiektowe\CSharp\projekt\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.csproj.CopyComplete

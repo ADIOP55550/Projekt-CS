@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "v1wVx6IhuRT7NVmsSrdgwF8YJ5K6RoiSaVZheIm4d+H0SZ9jIK7Y9USyg80wrf+rC1FbgvuOGY0akzKkR2ko2g==",
+  "dgSpecHash": "n2qgdOq294XLhlK9TPzs6q3zCTQvn+D1XQi/AdhxLpnKcHZle3LK6B6B6pKyZpQdZqP9UdiZaVBIJK+SSLy6lQ==",
   "success": true,
   "projectFilePath": "G:\\Uniwersytet\\Programowanie Obiektowe\\CSharp\\projekt\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\klamu\\.nuget\\packages\\markdig\\0.27.0\\markdig.0.27.0.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,13 +14,6 @@ namespace Kalendarz
 {
     public partial class CustomCalendar : UserControl
     {
-        private static readonly string[] monthNames = new string[]
-        {
-            "", "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień",
-            "Październik",
-            "Listopad", "Grudzień"
-        };
-
         /// <summary>
         /// Date change event sentinel type
         /// </summary>
@@ -28,28 +22,43 @@ namespace Kalendarz
         private readonly static int daysCount = 42;
         private int _currMonth = DateTime.Today.Month;
         private int _currYear = DateTime.Today.Year;
-        private DateTime? _selectedDay = null;
+        private CalendarDay? _selectedDay = null;
+        private readonly CalendarDay[] _days = new CalendarDay[daysCount];
+        private Dictionary<DateTime, HighlightInfo> _highlightInfos = new();
 
-        private CalendarDay[] _days = new CalendarDay[daysCount];
+        public void SelectDay(DateTime day)
+        {
+            this._currMonth = day.Month;
+            this.CurrYear = day.Year;
+            SelectedDay = _days.FirstOrDefault(d => d != null && d.Day.Equals(day), null);
+        }
 
-        public HashSet<DateTime> dottedDays = new();
-        public HashSet<DateTime> starredDays = new();
-
-        public DateTime? SelectedDay
+        public CalendarDay? SelectedDay
         {
             get => _selectedDay;
-            set
+            private set
             {
-                _selectedDay = value;
+                if (_selectedDay != null)
+                    // Deselect previous day
+                    _selectedDay.IsSelected = false;
 
                 if (value != null)
-                    if (!((DateTime) value).Month.Equals(_currMonth))
+                {
+                    // If a day outside current month is selected, then move to that day's month
+                    if (!value.Day.Month.Equals(_currMonth))
                     {
-                        CurrMonth = ((DateTime) value).Month;
-                        CurrYear = ((DateTime) value).Year;
+                        SelectDay(value.Day);
+                        return;
                     }
+                }
 
-                Invalidate();
+                // Update current value
+                _selectedDay = value;
+
+
+                if (_selectedDay != null)
+                    // And set it's IsSelected value
+                    _selectedDay.IsSelected = true;
             }
         }
 
@@ -71,12 +80,18 @@ namespace Kalendarz
                     _currYear--;
                 }
 
-                this.monthLabel.Text = monthNames[_currMonth] + " " + this.CurrYear;
 
-                ((EventHandler<DateTime>?) Events[s_dateChanged])?.Invoke(this, new DateTime(this._currYear, this._currMonth, 1));
+                this.monthLabel.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(_currMonth) + " " +
+                                       this.CurrYear;
 
-                this.InvalidateAllDays();
-                this.Invalidate();
+                ((EventHandler<DateTime>?) Events[s_dateChanged])?.Invoke(this,
+                    new DateTime(this._currYear, this._currMonth, 1));
+
+                _highlightInfos.Clear();
+                this._highlightInfos =
+                    DaysService.GetInstance().GetHighlightInfosForMonth(this.CurrYear, this.CurrMonth);
+
+                UpdateDaysNumbers();
             }
         }
 
@@ -86,12 +101,18 @@ namespace Kalendarz
             set
             {
                 _currYear = value;
-                this.monthLabel.Text = monthNames[_currMonth] + " " + this.CurrYear;
+                this.monthLabel.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(_currMonth) + " " +
+                                       this.CurrYear;
 
-                ((EventHandler<DateTime>?) Events[s_dateChanged])?.Invoke(this, new DateTime(this._currYear, this._currMonth, 1));
+                ((EventHandler<DateTime>?) Events[s_dateChanged])?.Invoke(this,
+                    new DateTime(this._currYear, this._currMonth, 1));
 
-                this.InvalidateAllDays();
-                this.Invalidate();
+                _highlightInfos.Clear();
+                _highlightInfos =
+                    DaysService.GetInstance().GetHighlightInfosForMonth(this.CurrYear, this.CurrMonth);
+
+
+                UpdateDaysNumbers();
             }
         }
 
@@ -104,20 +125,22 @@ namespace Kalendarz
         }
 
 
-        private void InvalidateAllDays()
-        {
-            foreach (var calendarDay in this._days)
-            {
-                calendarDay.Invalidate();
-            }
-        }
-
         public DayOfWeek FirstDayOfWeek { get; set; } = DayOfWeek.Monday;
 
         public CustomCalendar()
         {
             InitializeComponent();
+            init();
+        }
 
+        public void init()
+        {
+            CreateDaysNamesLabels();
+            CreateDaysElements();
+        }
+
+        private void CreateDaysNamesLabels()
+        {
             for (int i = 0; i < 7; i++)
             {
                 var day = (DayOfWeek) ((i + (int) FirstDayOfWeek) % 7);
@@ -129,7 +152,10 @@ namespace Kalendarz
                 // calendarGrid.SetColumn(label, i);
                 // calendarGrid.SetRow(label, 0);
             }
+        }
 
+        private void CreateDaysElements()
+        {
             var firstDay = new DateTime(this.CurrYear, this.CurrMonth, 1);
             var addDaysFromPrevMonth = ((int) firstDay.DayOfWeek) % 7;
             var singleLabelSize = new Size(calendarGrid.GetColumnWidths()[0], calendarGrid.GetRowHeights()[1]);
@@ -137,42 +163,89 @@ namespace Kalendarz
             for (int i = 0; i < daysCount; i++)
             {
                 var day = firstDay.AddDays(i - addDaysFromPrevMonth);
-                var calendarDay = new CalendarDay(new Font(SystemFonts.DefaultFont.Name, 18F), day);
-                calendarDay.Size = singleLabelSize;
-                calendarDay.Click += (sender, args) =>
-                    SelectedDay = ((CalendarDay) sender!).Day;
+                var calendarDay = new CalendarDay(new Font(SystemFonts.DefaultFont.Name, 18F), day)
+                {
+                    Size = singleLabelSize
+                };
+                calendarDay.BorderThickness = 3;
+
                 calendarDay.DoubleClick +=
                     (indicator, args) =>
                     {
-                        dottedDays.Add(((CalendarDay) indicator!).Day);
-                        Invalidate();
+                        ((CalendarDay) indicator!).HighlightInfo += new HighlightInfo
+                        {
+                            IndicatorColor = Color.MediumPurple
+                        };
                     };
+
+                calendarDay.MouseDown += (sender, args) =>
+                {
+                    switch (args.Button)
+                    {
+                        case MouseButtons.Left:
+                            SelectedDay = (CalendarDay) sender!;
+                            // ((CalendarDay) sender!).BorderColor = Color.DarkBlue;
+                            break;
+                        case MouseButtons.Right:
+                            ((CalendarDay) sender!).HighlightInfo += new HighlightInfo
+                            {
+                                HighlightColor = Color.Aquamarine
+                            };
+                            break;
+                    }
+
+                    // ((CalendarDay) sender!).Invalidate();
+
+                    // UpdateDaysNumbers();
+                };
 
                 calendarDay.MouseWheel +=
                     (indicator, args) =>
                     {
-                        starredDays.Add(((CalendarDay) indicator!).Day);
-                        Invalidate();
+                        // starredDays.Add(((CalendarDay) indicator!).Day);
+
+                        ((CalendarDay) indicator!).HighlightInfo +=
+                            new HighlightInfo
+                            {
+                                IndicatorBorderColor = Color.Goldenrod
+                            };
+
+
+                        // ((CalendarDay) indicator).Invalidate();
                     };
 
                 _days[i] = calendarDay;
                 calendarGrid.Controls.Add(calendarDay);
-                // calendarGrid.SetColumn(calendarDay, i - (i / 7) * 7);
-                // calendarGrid.SetRow(calendarDay, i / 7 + 1);
             }
         }
 
-
-        protected override void OnPaint(PaintEventArgs e)
+        private void OnCalendarDayOnMouseDown(object sender, MouseEventArgs args)
         {
-            base.OnPaint(e);
+            switch (args.Button)
+            {
+                case MouseButtons.Left:
+                    SelectedDay = (CalendarDay) sender!;
+                    // ((CalendarDay) sender!).BorderColor = Color.DarkBlue;
+                    break;
+                case MouseButtons.Right:
+                    ((CalendarDay) sender!).HighlightInfo += new HighlightInfo
+                    {
+                        HighlightColor = Color.Aquamarine
+                    };
+                    break;
+            }
 
+            UpdateDaysNumbers();
+        }
+
+        private void UpdateDaysNumbers()
+        {
             var firstDay = new DateTime(this.CurrYear, this.CurrMonth, 1);
-
             // 7 is added to prevent negative numbers which screw with the % operator
             var addDaysFromPrevMonth = ((int) firstDay.DayOfWeek - (int) FirstDayOfWeek + 7) % 7;
+            var numDaysInMonth = DateTime.DaysInMonth(CurrYear, CurrMonth);
 
-            SuspendLayout();
+            this.SuspendLayout();
 
             for (int i = 0; i < daysCount; i++)
             {
@@ -181,20 +254,24 @@ namespace Kalendarz
                 var day = firstDay.AddDays(i - addDaysFromPrevMonth);
                 _days[i].Day = day;
 
-                calendarDay.Text = day.Day.ToString();
-
+                calendarDay.HighlightInfo =
+                    _highlightInfos.ContainsKey(day)
+                        ? _highlightInfos[day]
+                        : DaysService.GetInstance().GetHighlightInfoForDay(day); // new HighlightInfo();
+                calendarDay.IsLowlighted = i >= numDaysInMonth + addDaysFromPrevMonth || i < addDaysFromPrevMonth;
+                // Override border color if the day is current_day or is selected
                 calendarDay.BorderColor =
-                    day.Equals(SelectedDay) ? Color.Blue : day.Equals(DateTime.Today) ? Color.Gray : Color.Transparent;
-                calendarDay.CircleColor =
-                    dottedDays.Contains(day) ? Color.MediumPurple : Color.Transparent;
-                calendarDay.CircleInnerColor =
-                    starredDays.Contains(day) ? Color.Goldenrod : Color.Transparent;
-
-                calendarDay.IsLowlighted = !day.Month.Equals(_currMonth);
+                    CalculateBorderColor(calendarDay, calendarDay.BorderColor);
             }
 
-            ResumeLayout();
+            this.ResumeLayout();
         }
+
+        private Color CalculateBorderColor(CalendarDay day, Color? defaultColor = null)
+        {
+            return day.Day.Equals(DateTime.Today) ? Color.Gray : defaultColor ?? Color.Transparent;
+        }
+
 
         private void prevBtn_Click(object sender, EventArgs e)
         {

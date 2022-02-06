@@ -61,6 +61,114 @@ namespace Kalendarz.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu @media (prefers-color-scheme: dark) {
+        ///  .markdown-body {
+        ///    color-scheme: dark;
+        ///    --color-prettylights-syntax-comment: #8b949e;
+        ///    --color-prettylights-syntax-constant: #79c0ff;
+        ///    --color-prettylights-syntax-entity: #d2a8ff;
+        ///    --color-prettylights-syntax-storage-modifier-import: #c9d1d9;
+        ///    --color-prettylights-syntax-entity-tag: #7ee787;
+        ///    --color-prettylights-syntax-keyword: #ff7b72;
+        ///    --color-prettylights-syntax-string: #a5d6ff;
+        ///    --color-prettylights-syntax-variable: #ffa657;
+        ///    --color- [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string MarkdownGithubTheme {
+            get {
+                return ResourceManager.GetString("MarkdownGithubTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu .markdown-body {
+        ///  color-scheme: dark;
+        ///  -ms-text-size-adjust: 100%;
+        ///  -webkit-text-size-adjust: 100%;
+        ///  margin: 0;
+        ///  color: #c9d1d9;
+        ///  background-color: #0d1117;
+        ///  font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;
+        ///  font-size: 16px;
+        ///  line-height: 1.5;
+        ///  word-wrap: break-word;
+        ///}
+        ///
+        ///.markdown-body .octicon {
+        ///  display: inline-block;
+        ///  fill: currentColor;
+        ///  vertical-align: text-bottom;
+        ///}
+        ///
+        ///.markdown-body h1:hover .anchor .octicon-link:befor [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string MarkdownGithubThemeDark {
+            get {
+                return ResourceManager.GetString("MarkdownGithubThemeDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu .markdown-body {
+        ///  -ms-text-size-adjust: 100%;
+        ///  -webkit-text-size-adjust: 100%;
+        ///  margin: 0;
+        ///  color: #24292f;
+        ///  background-color: #ffffff;
+        ///  font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;
+        ///  font-size: 16px;
+        ///  line-height: 1.5;
+        ///  word-wrap: break-word;
+        ///}
+        ///
+        ///.markdown-body .octicon {
+        ///  display: inline-block;
+        ///  fill: currentColor;
+        ///  vertical-align: text-bottom;
+        ///}
+        ///
+        ///.markdown-body h1:hover .anchor .octicon-link:before,
+        ///.markdown-body h2:h [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string MarkdownGithubThemeLight {
+            get {
+                return ResourceManager.GetString("MarkdownGithubThemeLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu 
+        ////* ----- Global settings ----------------------------------------------- {{{ */
+        ///
+        ///:root {
+        ///  /* --- Colors --- */
+        ///
+        ///  --background-color: #fff;
+        ///
+        ///  --color-text: #1b2733;
+        ///  --color-text-secondary: #637282;
+        ///  --color-link: #0070e0;
+        ///  --color-sidenote: #616970;
+        ///
+        ///  --highlight-red: #ea9999;
+        ///  --highlight-yellow: #ffe599;
+        ///  --highlight-green: #b6d7a8;
+        ///  --highlight-blue: #a4c2f4;
+        ///  --highlight-purple: #b4a7d6;
+        ///
+        ///  --color-inline-code: #1b2733;
+        ///  --color-inline-code-bg: #f3f3f8;
+        ///
+        ///  --color-border: #dfdfd0;
+        ///  --color [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string MarkdownPandocTheme {
+            get {
+                return ResourceManager.GetString("MarkdownPandocTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap pobrane__1_ {

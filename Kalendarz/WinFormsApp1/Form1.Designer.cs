@@ -44,6 +44,9 @@
             this.NextMonthPanel = new System.Windows.Forms.Panel();
             this.NextMonthCalendar = new System.Windows.Forms.MonthCalendar();
             this.EditorPanel = new System.Windows.Forms.Panel();
+            this.editorSplit = new System.Windows.Forms.SplitContainer();
+            this.editorTextBox = new System.Windows.Forms.RichTextBox();
+            this.themeSwitchBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -54,6 +57,10 @@
             this.CurrMonthPanel.SuspendLayout();
             this.PrevMonthPanel.SuspendLayout();
             this.NextMonthPanel.SuspendLayout();
+            this.EditorPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.editorSplit)).BeginInit();
+            this.editorSplit.Panel1.SuspendLayout();
+            this.editorSplit.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -137,20 +144,21 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 433F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.CurrMonthPanel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.PrevMonthPanel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.NextMonthPanel, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.EditorPanel, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.themeSwitchBtn, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.17347F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 78.82653F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 223F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 400F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1279, 765);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -164,20 +172,20 @@
             this.CurrMonthPanel.Location = new System.Drawing.Point(3, 3);
             this.CurrMonthPanel.Name = "CurrMonthPanel";
             this.tableLayoutPanel1.SetRowSpan(this.CurrMonthPanel, 2);
-            this.CurrMonthPanel.Size = new System.Drawing.Size(840, 535);
+            this.CurrMonthPanel.Size = new System.Drawing.Size(794, 494);
             this.CurrMonthPanel.TabIndex = 0;
             this.CurrMonthPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.CurrMonthPanel_Paint);
             // 
             // customCalendar1
             // 
+            this.customCalendar1.BackColor = System.Drawing.Color.White;
             this.customCalendar1.CurrMonth = 2;
             this.customCalendar1.CurrYear = 2022;
             this.customCalendar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customCalendar1.FirstDayOfWeek = System.DayOfWeek.Monday;
             this.customCalendar1.Location = new System.Drawing.Point(0, 0);
             this.customCalendar1.Name = "customCalendar1";
-            this.customCalendar1.SelectedDay = null;
-            this.customCalendar1.Size = new System.Drawing.Size(840, 535);
+            this.customCalendar1.Size = new System.Drawing.Size(794, 494);
             this.customCalendar1.TabIndex = 1;
             // 
             // label2
@@ -194,9 +202,9 @@
             this.PrevMonthPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.PrevMonthPanel.Controls.Add(this.PrevMonthCalendar);
             this.PrevMonthPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PrevMonthPanel.Location = new System.Drawing.Point(3, 544);
+            this.PrevMonthPanel.Location = new System.Drawing.Point(3, 503);
             this.PrevMonthPanel.Name = "PrevMonthPanel";
-            this.PrevMonthPanel.Size = new System.Drawing.Size(417, 218);
+            this.PrevMonthPanel.Size = new System.Drawing.Size(394, 259);
             this.PrevMonthPanel.TabIndex = 1;
             // 
             // PrevMonthCalendar
@@ -217,9 +225,9 @@
             this.NextMonthPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.NextMonthPanel.Controls.Add(this.NextMonthCalendar);
             this.NextMonthPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NextMonthPanel.Location = new System.Drawing.Point(426, 544);
+            this.NextMonthPanel.Location = new System.Drawing.Point(403, 503);
             this.NextMonthPanel.Name = "NextMonthPanel";
-            this.NextMonthPanel.Size = new System.Drawing.Size(417, 218);
+            this.NextMonthPanel.Size = new System.Drawing.Size(394, 259);
             this.NextMonthPanel.TabIndex = 2;
             // 
             // NextMonthCalendar
@@ -238,12 +246,48 @@
             // EditorPanel
             // 
             this.EditorPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.EditorPanel.Controls.Add(this.editorSplit);
             this.EditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EditorPanel.Location = new System.Drawing.Point(849, 117);
+            this.EditorPanel.Location = new System.Drawing.Point(803, 103);
             this.EditorPanel.Name = "EditorPanel";
             this.tableLayoutPanel1.SetRowSpan(this.EditorPanel, 2);
-            this.EditorPanel.Size = new System.Drawing.Size(427, 645);
+            this.EditorPanel.Size = new System.Drawing.Size(473, 659);
             this.EditorPanel.TabIndex = 3;
+            // 
+            // editorSplit
+            // 
+            this.editorSplit.Cursor = System.Windows.Forms.Cursors.HSplit;
+            this.editorSplit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.editorSplit.Location = new System.Drawing.Point(0, 0);
+            this.editorSplit.Name = "editorSplit";
+            this.editorSplit.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // editorSplit.Panel1
+            // 
+            this.editorSplit.Panel1.Controls.Add(this.editorTextBox);
+            this.editorSplit.Size = new System.Drawing.Size(473, 659);
+            this.editorSplit.SplitterDistance = 327;
+            this.editorSplit.TabIndex = 0;
+            // 
+            // editorTextBox
+            // 
+            this.editorTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.editorTextBox.Location = new System.Drawing.Point(0, 0);
+            this.editorTextBox.Name = "editorTextBox";
+            this.editorTextBox.Size = new System.Drawing.Size(473, 327);
+            this.editorTextBox.TabIndex = 0;
+            this.editorTextBox.Text = "";
+            this.editorTextBox.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            // 
+            // themeSwitchBtn
+            // 
+            this.themeSwitchBtn.Location = new System.Drawing.Point(803, 3);
+            this.themeSwitchBtn.Name = "themeSwitchBtn";
+            this.themeSwitchBtn.Size = new System.Drawing.Size(118, 23);
+            this.themeSwitchBtn.TabIndex = 4;
+            this.themeSwitchBtn.Text = "Switch theme";
+            this.themeSwitchBtn.UseVisualStyleBackColor = true;
+            this.themeSwitchBtn.Click += new System.EventHandler(this.themeSwitchBtn_Click);
             // 
             // Form1
             // 
@@ -251,9 +295,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1279, 839);
             this.Controls.Add(this.splitContainer1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MinimumSize = new System.Drawing.Size(1200, 800);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Kapibara";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -268,6 +312,10 @@
             this.CurrMonthPanel.PerformLayout();
             this.PrevMonthPanel.ResumeLayout(false);
             this.NextMonthPanel.ResumeLayout(false);
+            this.EditorPanel.ResumeLayout(false);
+            this.editorSplit.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.editorSplit)).EndInit();
+            this.editorSplit.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -289,5 +337,8 @@
         private Label label2;
         private CustomCalendar customCalendar1;
         private ToolStripButton toolStripButton1;
+        private SplitContainer editorSplit;
+        private RichTextBox editorTextBox;
+        private Button themeSwitchBtn;
     }
 }

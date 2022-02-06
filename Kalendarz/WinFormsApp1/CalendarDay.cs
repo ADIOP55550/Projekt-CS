@@ -12,21 +12,63 @@ namespace Kalendarz
 {
     public partial class CalendarDay : UserControl
     {
+        /// <summary>
+        /// The day this object is set to, also sets displayed text
+        /// </summary>
+        public DateTime Day
+        {
+            get => _day;
+            set
+            {
+                _day = value;
+                this._label.Text = value.Day.ToString();
+            }
+        }
 
-        public DateTime Day { get; set; }
-        public List<string> tags { get; set; } = new();
+        /// <summary>
+        /// Sets the color which is in the background of the label. If the color is dark, make sure to invert foreground color!
+        /// </summary>
         public Color HighlightColor
         {
             get => _highlightColor;
-            set
+            private set
             {
                 if (_highlightColor == value)
                     return;
                 _highlightColor = value;
-                Invalidate();
+                this._label.BackColor = value;
             }
         }
 
+        /// <summary>
+        /// Foreground color for a day that is not lowlighted
+        /// </summary>
+        public Color HighlightForeColor
+        {
+            get => _highlightForeColor;
+            set
+            {
+                _highlightForeColor = value;
+                this._label.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Foreground color for lowlighted day (a day that is from other month)
+        /// </summary>
+        public Color LowlightForeColor
+        {
+            get => _lowlightForeColor;
+            set
+            {
+                _lowlightForeColor = value;
+                this._label.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Border color of the day label
+        /// </summary>
         public Color BorderColor
         {
             get => _borderColor;
@@ -35,36 +77,45 @@ namespace Kalendarz
                 if (_borderColor == value)
                     return;
                 _borderColor = value;
-                Invalidate();
+                this._borderPanel.Invalidate();
             }
         }
 
-        public Color CircleColor
+        /// <summary>
+        /// Color of the outer indicator (border)
+        /// </summary>
+        public Color IndicatorColor
         {
-            get => _circleColor;
-            set
+            get => _indicatorColor;
+            private set
             {
-                if (_circleColor == value)
+                if (_indicatorColor == value)
                     return;
-                _circleColor = value;
-                Invalidate();
+                _indicatorColor = value;
+                this._indicator.Invalidate();
             }
         }
 
-        public Color CircleInnerColor
+        /// <summary>
+        /// Color of the inner indicator (dot)
+        /// </summary>
+        public Color IndicatorInnerColor
         {
-            get => _circleInnerColor;
-            set
+            get => _indicatorInnerColor;
+            private set
             {
-                if (_circleInnerColor == value)
+                if (_indicatorInnerColor == value)
                     return;
-                _circleInnerColor = value;
-                Invalidate();
+                _indicatorInnerColor = value;
+                this._indicator.Invalidate();
             }
         }
 
         private bool _isLowlighted = false;
 
+        /// <summary>
+        /// Whether the day is lowlighted (e.g. it is from a different month)
+        /// </summary>
         public bool IsLowlighted
         {
             get => _isLowlighted;
@@ -74,51 +125,161 @@ namespace Kalendarz
                     return;
                 _isLowlighted = value;
 
-                Font = new Font(Font.Name, Font.Size, _isLowlighted ? FontStyle.Regular : FontStyle.Bold);
-                Invalidate();
+                _label.Font = new Font(_label.Font.Name, _label.Font.Size,
+                    _isLowlighted ? FontStyle.Regular : FontStyle.Bold);
+                _label.ForeColor = _isLowlighted ? LowlightForeColor : HighlightForeColor;
             }
         }
 
 
-        public int CircleSize = 10;
-        public Point CirclePoint = new(5, 5);
-        private Color _circleInnerColor = Color.Transparent;
-        private Color _circleColor = Color.Transparent;
+        /// <summary>
+        /// Size of the inner indicator
+        /// </summary>
+        public int IndicatorSize { get; } = 16;
+
+        /// <summary>
+        /// Size of the inner indicator's border
+        /// </summary>
+        public int IndicatorBorderThickness { get; } = 4;
+
+        public Point IndicatorPosition { get; } = new(8, 8);
+
+        /// <summary>
+        /// Label border thickness
+        /// </summary>
+        public int BorderThickness { get; set; } = 2;
+
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                _isSelected = value;
+                _borderPanel.Invalidate();
+            }
+        }
+
+        public HighlightInfo HighlightInfo
+        {
+            get => _highlightInfo;
+            set
+            {
+                _highlightInfo = value;
+                this.ApplyHighlightInfo();
+            }
+        }
+
+        private Color _indicatorInnerColor = Color.Transparent;
+        private Color _indicatorColor = Color.Transparent;
         private Color _borderColor = Color.Transparent;
         private Color _highlightColor = Color.Transparent;
+        private DateTime _day;
+        private readonly Label _label;
+        private readonly Panel _indicator;
+        private readonly Panel _borderPanel;
+        private Color _highlightForeColor = Color.Black;
+        private Color _lowlightForeColor = Color.LightGray;
+        private HighlightInfo _highlightInfo = new HighlightInfo();
+        private bool _isSelected;
 
+        public static Color SelectedDayBorderColor { get; set; } = Color.Red;
+
+        private void OnIndicatorPaint(object? sender, PaintEventArgs e)
+        {
+            if (sender != null)
+            {
+                // Get size of the indicator
+                var clientRectangle = ((Panel) sender).ClientRectangle;
+                clientRectangle.Inflate(
+                    new Size(-this.IndicatorBorderThickness / 2, -this.IndicatorBorderThickness / 2));
+                // Draw border
+                e.Graphics.DrawRectangle(new Pen(IndicatorColor, this.IndicatorBorderThickness), clientRectangle);
+                // Resize rect to fit border size
+                clientRectangle.Inflate(
+                    new Size(-this.IndicatorBorderThickness / 2, -this.IndicatorBorderThickness / 2));
+                // Draw center
+                e.Graphics.FillRectangle(new SolidBrush(IndicatorInnerColor), clientRectangle);
+            }
+        }
+
+        private void OnBorderPaint(object? sender, PaintEventArgs e)
+        {
+            if (sender != null)
+            {
+                // Get size of the indicator
+                var clientRectangle = ((Panel) sender).ClientRectangle;
+                clientRectangle.Inflate(new Size(-BorderThickness, -BorderThickness));
+                var color = _isSelected ? SelectedDayBorderColor : this.BorderColor;
+
+                e.Graphics.DrawLines(new Pen(color, this.BorderThickness), new[]
+                {
+                    new PointF(clientRectangle.Left, clientRectangle.Top),
+                    new PointF(clientRectangle.Right, clientRectangle.Top),
+                    new PointF(clientRectangle.Right, clientRectangle.Bottom),
+                    new PointF(clientRectangle.Left, clientRectangle.Bottom),
+                    new PointF(clientRectangle.Left, clientRectangle.Top)
+                });
+            }
+        }
 
         public CalendarDay(Font font, DateTime day)
         {
             InitializeComponent();
-            this.Day = day;
-            SetStyle(ControlStyles.UserPaint, true);
+            // SetStyle(ControlStyles.UserPaint, true);
             // this.Font = font;
-            this.Font = new Font(font.Name, font.Size, _isLowlighted ? FontStyle.Regular : FontStyle.Bold);
+
+            this.Dock = DockStyle.Fill;
+
+            var label = new Label();
+            this._label = label;
+            label.Font = new Font(font.Name, font.Size, _isLowlighted ? FontStyle.Regular : FontStyle.Bold);
+            label.ForeColor = _isLowlighted ? LowlightForeColor : HighlightForeColor;
+
+            label.Dock = DockStyle.Fill;
+            // label.Text = day.Day.ToString();
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            label.AutoSize = false;
+            label.BackColor = Color.Transparent;
+            // label.BackColor = Color.Aquamarine;
+            label.Click += (sender, args) => this.OnClick(args);
+            label.DoubleClick += (sender, args) => this.OnDoubleClick(args);
+            label.MouseDown += (sender, args) => this.OnMouseDown(args);
+
+            this.Day = day;
+
+            var indicator = new Panel();
+            this._indicator = indicator;
+            indicator.AutoSize = false;
+            indicator.Size = new Size(this.IndicatorSize, this.IndicatorSize);
+            indicator.Top = this.IndicatorPosition.Y;
+            indicator.Left = this.IndicatorPosition.X;
+            indicator.Paint += this.OnIndicatorPaint;
+
+            indicator.Click += (sender, args) => this.OnClick(args);
+            indicator.DoubleClick += (sender, args) => this.OnDoubleClick(args);
+            indicator.MouseDown += (sender, args) => this.OnMouseDown(args);
+
+            var borderPanel = new Panel();
+            this._borderPanel = borderPanel;
+            borderPanel.AutoSize = false;
+            borderPanel.BackColor = Color.Transparent;
+            borderPanel.Dock = DockStyle.Fill;
+            borderPanel.Paint += this.OnBorderPaint;
+            borderPanel.Click += (sender, args) => this.OnClick(args);
+            borderPanel.DoubleClick += (sender, args) => this.OnDoubleClick(args);
+            borderPanel.MouseDown += (sender, args) => this.OnMouseDown(args);
+
+            this.Controls.Add(label);
+            label.Controls.Add(indicator);
+            label.Controls.Add(borderPanel);
         }
 
-        protected Color processColor(Color c, int alpha = 70)
+        private void ApplyHighlightInfo()
         {
-            return c == Color.Transparent ? c : IsLowlighted ? Color.FromArgb(alpha, c) : c;
-        }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            var graphics = e.Graphics;
-            using var indicatorBrush = new SolidBrush(processColor(this.CircleInnerColor));
-            using var highlightBrush = new SolidBrush(processColor(this.HighlightColor));
-            using var indicatorPen = new Pen(processColor(this.CircleColor), 2F);
-            using var borderPen = new Pen(processColor(this.BorderColor), 4F);
-
-            graphics.FillRectangle(highlightBrush, this.DisplayRectangle);
-            graphics.DrawRectangle(borderPen, this.DisplayRectangle);
-            var r2 = new Rectangle(CirclePoint, new Size(CircleSize, CircleSize));
-            r2.Inflate(new Size(4, 4));
-            graphics.FillEllipse(indicatorBrush, r2);
-            graphics.DrawEllipse(indicatorPen, r2);
-            graphics.DrawString(this.Text, this.Font,
-                new SolidBrush(processColor(this.ForeColor)),
-                new Point((int) (this.Width / 2 - this.Font.Size), (int) (this.Height / 2 - this.Font.Size)));
+            this.BorderColor = this.HighlightInfo.BorderColor ?? Color.Transparent;
+            this.HighlightColor = this.HighlightInfo.HighlightColor ?? Color.Transparent;
+            this.IndicatorInnerColor = this.HighlightInfo.IndicatorColor ?? Color.Transparent;
+            this.IndicatorColor = this.HighlightInfo.IndicatorBorderColor ?? Color.Transparent;
         }
     }
 }
