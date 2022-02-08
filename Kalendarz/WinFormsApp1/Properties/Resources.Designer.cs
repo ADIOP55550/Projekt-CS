@@ -63,9 +63,39 @@ namespace Kalendarz.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap delete {
+            get {
+                object obj = ResourceManager.GetObject("delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_plus___24 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_plus___24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap kapibara {
             get {
                 object obj = ResourceManager.GetObject("kapibara", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap left_arrow {
+            get {
+                object obj = ResourceManager.GetObject("left_arrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -82,7 +112,7 @@ namespace Kalendarz.Properties {
         ///    --color-prettylights-syntax-keyword: #ff7b72;
         ///    --color-prettylights-syntax-string: #a5d6ff;
         ///    --color-prettylights-syntax-variable: #ffa657;
-        ///    --color- [obcięto pozostałą część ciągu]&quot;;.
+        ///  [obcięto pozostałą część ciągu]&quot;;.
         /// </summary>
         internal static string MarkdownGithubTheme {
             get {
@@ -110,7 +140,7 @@ namespace Kalendarz.Properties {
         ///  vertical-align: text-bottom;
         ///}
         ///
-        ///.markdown-body h1:hover .anchor .octicon-link:befor [obcięto pozostałą część ciągu]&quot;;.
+        ///.markdown-body h1:hover .anchor  [obcięto pozostałą część ciągu]&quot;;.
         /// </summary>
         internal static string MarkdownGithubThemeDark {
             get {
@@ -138,7 +168,7 @@ namespace Kalendarz.Properties {
         ///}
         ///
         ///.markdown-body h1:hover .anchor .octicon-link:before,
-        ///.markdown-body h2:h [obcięto pozostałą część ciągu]&quot;;.
+        /// [obcięto pozostałą część ciągu]&quot;;.
         /// </summary>
         internal static string MarkdownGithubThemeLight {
             get {
@@ -169,8 +199,7 @@ namespace Kalendarz.Properties {
         ///  --color-inline-code: #1b2733;
         ///  --color-inline-code-bg: #f3f3f8;
         ///
-        ///  --color-border: #dfdfd0;
-        ///  --color [obcięto pozostałą część ciągu]&quot;;.
+        ///  --color-bord [obcięto pozostałą część ciągu]&quot;;.
         /// </summary>
         internal static string MarkdownPandocTheme {
             get {
@@ -184,6 +213,16 @@ namespace Kalendarz.Properties {
         internal static System.Drawing.Bitmap pobrane__1_ {
             get {
                 object obj = ResourceManager.GetObject("pobrane__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap right_arrow {
+            get {
+                object obj = ResourceManager.GetObject("right_arrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

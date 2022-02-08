@@ -45,23 +45,25 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImage = global::Kalendarz.Properties.Resources.delete;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button1.Location = new System.Drawing.Point(0, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(18, 18);
             this.button1.TabIndex = 1;
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Tag
+            // CustomTag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Name = "Tag";
-            this.Size = new System.Drawing.Size(68, 24);
+            this.Name = "CustomTag";
+            this.Size = new System.Drawing.Size(77, 24);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -11,9 +11,9 @@
 - [x] ? Wsparcie dla MarkDowna
 - [x] ? Usuwanie notatek
 - [ ] Gwiazdkowanie notatek
-- [ ] Dodawanie tagów
-- [ ] Usuwanie tagów
-- [ ] Przypisywanie tagów
+- [x] Dodawanie tagów
+- [x] Usuwanie tagów
+- [x] Przypisywanie tagów
 - [ ] ...
 
 

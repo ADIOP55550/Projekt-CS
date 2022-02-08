@@ -63,22 +63,22 @@
             // 
             // prevBtn
             // 
-            this.prevBtn.Location = new System.Drawing.Point(19, 16);
+            this.prevBtn.Image = global::Kalendarz.Properties.Resources.left_arrow;
+            this.prevBtn.Location = new System.Drawing.Point(17, 11);
             this.prevBtn.Name = "prevBtn";
-            this.prevBtn.Size = new System.Drawing.Size(75, 23);
+            this.prevBtn.Size = new System.Drawing.Size(42, 34);
             this.prevBtn.TabIndex = 1;
-            this.prevBtn.Text = "Prev";
             this.prevBtn.UseVisualStyleBackColor = true;
             this.prevBtn.Click += new System.EventHandler(this.prevBtn_Click);
             // 
             // nextBtn
             // 
             this.nextBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.nextBtn.Location = new System.Drawing.Point(463, 16);
+            this.nextBtn.Image = global::Kalendarz.Properties.Resources.right_arrow;
+            this.nextBtn.Location = new System.Drawing.Point(497, 11);
             this.nextBtn.Name = "nextBtn";
-            this.nextBtn.Size = new System.Drawing.Size(75, 23);
+            this.nextBtn.Size = new System.Drawing.Size(41, 34);
             this.nextBtn.TabIndex = 1;
-            this.nextBtn.Text = "Next";
             this.nextBtn.UseVisualStyleBackColor = true;
             this.nextBtn.Click += new System.EventHandler(this.nextBtn_Click);
             // 

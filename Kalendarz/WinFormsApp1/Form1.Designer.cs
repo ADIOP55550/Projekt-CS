@@ -46,6 +46,7 @@
             this.EditorPanel = new System.Windows.Forms.Panel();
             this.editorSplit = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.HighlightButton = new System.Windows.Forms.RadioButton();
             this.panel5 = new System.Windows.Forms.Panel();
             this.priorityLabel = new System.Windows.Forms.Label();
             this.prioritySlider = new System.Windows.Forms.TrackBar();
@@ -58,9 +59,9 @@
             this.confirmButton = new System.Windows.Forms.Button();
             this.editorTextBox = new System.Windows.Forms.RichTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.themeSwitchBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -204,6 +205,7 @@
             // customCalendar1
             // 
             this.customCalendar1.BackColor = System.Drawing.Color.White;
+            this.customCalendar1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.customCalendar1.CurrMonth = 2;
             this.customCalendar1.CurrYear = 2022;
             this.customCalendar1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -308,17 +310,31 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.LightSkyBlue;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.HighlightButton);
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.declineButton);
             this.panel2.Controls.Add(this.confirmButton);
             this.panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.panel2.Location = new System.Drawing.Point(222, 3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(472, 0);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(20);
-            this.panel2.Size = new System.Drawing.Size(251, 267);
+            this.panel2.Size = new System.Drawing.Size(252, 310);
             this.panel2.TabIndex = 1;
+            // 
+            // HighlightButton
+            // 
+            this.HighlightButton.AutoSize = true;
+            this.HighlightButton.Location = new System.Drawing.Point(93, 196);
+            this.HighlightButton.Name = "HighlightButton";
+            this.HighlightButton.Size = new System.Drawing.Size(75, 19);
+            this.HighlightButton.TabIndex = 13;
+            this.HighlightButton.TabStop = true;
+            this.HighlightButton.Text = "Highlight";
+            this.HighlightButton.UseVisualStyleBackColor = true;
+            this.HighlightButton.CheckedChanged += new System.EventHandler(this.HighlightButton_CheckedChanged);
             // 
             // panel5
             // 
@@ -342,6 +358,7 @@
             // 
             // prioritySlider
             // 
+            this.prioritySlider.BackColor = System.Drawing.SystemColors.GrayText;
             this.prioritySlider.Cursor = System.Windows.Forms.Cursors.Hand;
             this.prioritySlider.Location = new System.Drawing.Point(3, 18);
             this.prioritySlider.Name = "prioritySlider";
@@ -378,6 +395,7 @@
             this.currentColorPanel.Name = "currentColorPanel";
             this.currentColorPanel.Size = new System.Drawing.Size(16, 17);
             this.currentColorPanel.TabIndex = 7;
+            this.currentColorPanel.Click += new System.EventHandler(this.ColorLabel_Click);
             // 
             // panel3
             // 
@@ -401,7 +419,7 @@
             // declineButton
             // 
             this.declineButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.declineButton.Location = new System.Drawing.Point(156, 216);
+            this.declineButton.Location = new System.Drawing.Point(151, 246);
             this.declineButton.Name = "declineButton";
             this.declineButton.Size = new System.Drawing.Size(75, 26);
             this.declineButton.TabIndex = 6;
@@ -412,7 +430,7 @@
             // confirmButton
             // 
             this.confirmButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.confirmButton.Location = new System.Drawing.Point(21, 216);
+            this.confirmButton.Location = new System.Drawing.Point(40, 246);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(69, 26);
             this.confirmButton.TabIndex = 5;
@@ -434,43 +452,49 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.flowLayoutPanel1);
-            this.panel1.Controls.Add(this.themeSwitchBtn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(803, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(726, 94);
             this.panel1.TabIndex = 4;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(321, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(138, 30);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Your Tags List";
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(368, 3);
+            this.button1.AutoSize = true;
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImage = global::Kalendarz.Properties.Resources.icons8_plus___24;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button1.Location = new System.Drawing.Point(685, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 23);
+            this.button1.Size = new System.Drawing.Size(32, 34);
             this.button1.TabIndex = 7;
-            this.button1.Text = "Add tag";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 51);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 43);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(726, 43);
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 0, 50, 0);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(726, 51);
             this.flowLayoutPanel1.TabIndex = 6;
             this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
-            // 
-            // themeSwitchBtn
-            // 
-            this.themeSwitchBtn.Location = new System.Drawing.Point(182, 3);
-            this.themeSwitchBtn.Name = "themeSwitchBtn";
-            this.themeSwitchBtn.Size = new System.Drawing.Size(118, 23);
-            this.themeSwitchBtn.TabIndex = 5;
-            this.themeSwitchBtn.Text = "Switch theme";
-            this.themeSwitchBtn.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -500,6 +524,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.editorSplit)).EndInit();
             this.editorSplit.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.prioritySlider)).EndInit();
@@ -508,6 +533,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -533,7 +559,6 @@
         private Panel panel1;
         private Button button1;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Button themeSwitchBtn;
         private Panel panel2;
         private Panel panel5;
         private Label priorityLabel;
@@ -546,5 +571,7 @@
         private Button declineButton;
         private Button confirmButton;
         private Label kapibaraLabel;
+        private Label label1;
+        private RadioButton HighlightButton;
     }
 }

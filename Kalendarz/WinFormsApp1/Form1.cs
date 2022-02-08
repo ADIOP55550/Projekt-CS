@@ -215,9 +215,10 @@ namespace Kalendarz
             newtag.ForeColor = bgcolor.GetBrightness() > 0.6 ? Color.Black : Color.White;
 
             newtag.Priority = prioritySlider.Value;
-
-
+            
             flowLayoutPanel1.Controls.Add(newtag);
+
+
 
             currentColorPanel.BackColor = Color.White;
             prioritySlider.Value = 0;
@@ -250,6 +251,11 @@ namespace Kalendarz
         {
             kapibaraLabel.Text = DateTime.Today.Day.ToString();
             Util.setTimeout(() => { Invoke(() => { customCalendar1.SelectDay(DateTime.Today); }); }, 1);
+        }
+
+        private void HighlightButton_CheckedChanged(object sender, EventArgs e)
+        {
+            //TODO
         }
     }
 }
