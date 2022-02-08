@@ -61,6 +61,16 @@ namespace Kalendarz.Properties {
         }
         
         /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _262886880_473752794308932_2738182543227623826_n1 {
+            get {
+                object obj = ResourceManager.GetObject("262886880_473752794308932_2738182543227623826_n1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu @media (prefers-color-scheme: dark) {
         ///  .markdown-body {
         ///    color-scheme: dark;

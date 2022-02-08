@@ -164,6 +164,7 @@ namespace Kalendarz
             flowLayoutPanel1.Controls.Add(newtag);
 
             currentColorPanel.BackColor = Color.White;
+            prioritySlider.Value = 0;
             panel2.Visible = false;
 
 
@@ -174,10 +175,11 @@ namespace Kalendarz
             panel2.Visible = false;
             bgcolor = Color.Transparent;
             textBox1.Clear();
+            prioritySlider.Value = 0;
 
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void ColorLabel_Click(object sender, EventArgs e)
         {
             ColorDialog cd = new ColorDialog();
 

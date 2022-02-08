@@ -50,7 +50,7 @@
             this.priorityLabel = new System.Windows.Forms.Label();
             this.prioritySlider = new System.Windows.Forms.TrackBar();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.ColorLabel = new System.Windows.Forms.Label();
             this.currentColorPanel = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -144,7 +144,6 @@
             // 
             // LogoPanel
             // 
-            this.LogoPanel.BackgroundImage = global::Kalendarz.Properties.Resources.pobrane__1_;
             this.LogoPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.LogoPanel.Controls.Add(this.label1);
             this.LogoPanel.Dock = System.Windows.Forms.DockStyle.Left;
@@ -338,23 +337,23 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.panel4.Controls.Add(this.label3);
+            this.panel4.Controls.Add(this.ColorLabel);
             this.panel4.Controls.Add(this.currentColorPanel);
             this.panel4.Location = new System.Drawing.Point(64, 65);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(130, 24);
             this.panel4.TabIndex = 11;
             // 
-            // label3
+            // ColorLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.label3.Location = new System.Drawing.Point(9, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 15);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Color";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.ColorLabel.AutoSize = true;
+            this.ColorLabel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ColorLabel.Location = new System.Drawing.Point(9, 3);
+            this.ColorLabel.Name = "ColorLabel";
+            this.ColorLabel.Size = new System.Drawing.Size(36, 15);
+            this.ColorLabel.TabIndex = 8;
+            this.ColorLabel.Text = "Color";
+            this.ColorLabel.Click += new System.EventHandler(this.ColorLabel_Click);
             // 
             // currentColorPanel
             // 
@@ -525,7 +524,7 @@
         private Label priorityLabel;
         private TrackBar prioritySlider;
         private Panel panel4;
-        private Label label3;
+        private Label ColorLabel;
         private Panel currentColorPanel;
         private Panel panel3;
         private TextBox textBox1;
