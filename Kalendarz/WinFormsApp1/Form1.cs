@@ -38,6 +38,7 @@ namespace Kalendarz
         {
             InitializeComponent();
             panel2.Visible = false;
+            currentColorPanel.BackColor = Color.White;
             var now = DateTime.Now;
             var startDate = new DateTime(now.Year, now.Month, 1);
 
@@ -149,7 +150,7 @@ namespace Kalendarz
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            CreateTag newtag = new CreateTag();
+            CustomTag newtag = new CustomTag();
 
             newtag.title = textBox1.Text;
             textBox1.Clear();
@@ -173,6 +174,7 @@ namespace Kalendarz
             panel2.Visible = false;
             bgcolor = Color.Transparent;
             textBox1.Clear();
+
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -186,10 +188,6 @@ namespace Kalendarz
             bgcolor = cd.Color;
             currentColorPanel.BackColor = bgcolor;
 
-            using (calendarcontextContext cc = new calendarcontextContext)
-            {
-                cc.Entries.Add()
-            }
         }
     }
 }

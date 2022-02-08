@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5agiAmiu3pGKd1ndovscFuK+LAR0TnArwQmC35z2fmezc4nMrdITYtsB6DVlm1YwyfA+P6W+Ez6RuEuJ3hGIQg==",
+  "dgSpecHash": "ueDUP4yR1rd/5CJH0F8TtgicwZCpx1+j9+njb4v1uGfZO6hILjuizDT3SwEtEPL+9j0gusF85AUdoo5PXL+RVg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\FK\\Desktop\\dev\\Projekt-CS-dev\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj",
+  "projectFilePath": "C:\\Users\\FK\\Documents\\GitHub\\Projekt-CS\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\FK\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\FK\\.nuget\\packages\\markdig\\0.27.0\\markdig.0.27.0.nupkg.sha512",

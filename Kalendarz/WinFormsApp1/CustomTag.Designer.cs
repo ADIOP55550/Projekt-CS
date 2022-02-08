@@ -1,6 +1,6 @@
 ﻿namespace Kalendarz
 {
-    partial class CreateTag
+    partial class CustomTag
     {
         /// <summary> 
         /// Wymagana zmienna projektanta.

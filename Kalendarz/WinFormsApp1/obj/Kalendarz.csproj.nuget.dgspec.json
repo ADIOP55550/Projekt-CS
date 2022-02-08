@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\FK\\Desktop\\dev\\Projekt-CS-dev\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj": {}
+    "C:\\Users\\FK\\Documents\\GitHub\\Projekt-CS\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj": {}
   },
   "projects": {
-    "C:\\Users\\FK\\Desktop\\dev\\Projekt-CS-dev\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj": {
+    "C:\\Users\\FK\\Documents\\GitHub\\Projekt-CS\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FK\\Desktop\\dev\\Projekt-CS-dev\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj",
+        "projectUniqueName": "C:\\Users\\FK\\Documents\\GitHub\\Projekt-CS\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj",
         "projectName": "Kalendarz",
-        "projectPath": "C:\\Users\\FK\\Desktop\\dev\\Projekt-CS-dev\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj",
+        "projectPath": "C:\\Users\\FK\\Documents\\GitHub\\Projekt-CS\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj",
         "packagesPath": "C:\\Users\\FK\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FK\\Desktop\\dev\\Projekt-CS-dev\\Kalendarz\\WinFormsApp1\\obj\\",
+        "outputPath": "C:\\Users\\FK\\Documents\\GitHub\\Projekt-CS\\Kalendarz\\WinFormsApp1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -22,7 +22,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0-windows"
+          "net6.0-windows7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},

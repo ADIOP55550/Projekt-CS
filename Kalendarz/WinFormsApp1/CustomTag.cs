@@ -10,8 +10,10 @@ using System.Windows.Forms;
 
 namespace Kalendarz
 {
-    public partial class CreateTag : UserControl
+    public partial class CustomTag : UserControl
     {
+        private int _priority;
+
         public string title
         {
             get => label1.Text;
@@ -24,17 +26,17 @@ namespace Kalendarz
 
         public int priority
         {
-            get =>priority;
+            get =>_priority;
 
             set
             {
-               this.priority = value;
+                _priority = value;
                this.Invalidate();
             }
         }
 
 
-        public CreateTag()
+        public CustomTag()
         {
             InitializeComponent();
             
