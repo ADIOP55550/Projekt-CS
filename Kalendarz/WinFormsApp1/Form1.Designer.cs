@@ -46,6 +46,7 @@
             this.EditorPanel = new System.Windows.Forms.Panel();
             this.editorSplit = new System.Windows.Forms.SplitContainer();
             this.editorTextBox = new System.Windows.Forms.RichTextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.themeSwitchBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -61,13 +62,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.editorSplit)).BeginInit();
             this.editorSplit.Panel1.SuspendLayout();
             this.editorSplit.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.Color.White;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 3, 4, 3);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -79,7 +83,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1279, 839);
+            this.splitContainer1.Size = new System.Drawing.Size(1532, 839);
             this.splitContainer1.SplitterDistance = 70;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -95,18 +99,17 @@
             this.toolStripButton1});
             this.ToolStrip.Location = new System.Drawing.Point(200, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(1079, 70);
+            this.ToolStrip.Size = new System.Drawing.Size(1332, 70);
             this.ToolStrip.TabIndex = 1;
             this.ToolStrip.Text = "toolStrip1";
             // 
             // toolStripButton4
             // 
-            this.toolStripButton4.AutoSize = false;
             this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(1280, 1024);
+            this.toolStripButton4.Size = new System.Drawing.Size(93, 67);
             this.toolStripButton4.Text = "Skocz do dzisiaj";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
@@ -151,7 +154,7 @@
             this.tableLayoutPanel1.Controls.Add(this.PrevMonthPanel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.NextMonthPanel, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.EditorPanel, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.themeSwitchBtn, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -159,7 +162,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 400F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1279, 765);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1532, 765);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // CurrMonthPanel
@@ -199,7 +202,7 @@
             // 
             // PrevMonthPanel
             // 
-            this.PrevMonthPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.PrevMonthPanel.BackColor = System.Drawing.Color.White;
             this.PrevMonthPanel.Controls.Add(this.PrevMonthCalendar);
             this.PrevMonthPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PrevMonthPanel.Location = new System.Drawing.Point(3, 503);
@@ -209,6 +212,8 @@
             // 
             // PrevMonthCalendar
             // 
+            this.PrevMonthCalendar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PrevMonthCalendar.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.PrevMonthCalendar.Location = new System.Drawing.Point(63, 9);
             this.PrevMonthCalendar.MaxDate = new System.DateTime(2022, 2, 28, 0, 0, 0, 0);
@@ -222,7 +227,7 @@
             // 
             // NextMonthPanel
             // 
-            this.NextMonthPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.NextMonthPanel.BackColor = System.Drawing.Color.White;
             this.NextMonthPanel.Controls.Add(this.NextMonthCalendar);
             this.NextMonthPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NextMonthPanel.Location = new System.Drawing.Point(403, 503);
@@ -232,6 +237,8 @@
             // 
             // NextMonthCalendar
             // 
+            this.NextMonthCalendar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.NextMonthCalendar.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.NextMonthCalendar.Location = new System.Drawing.Point(61, 9);
             this.NextMonthCalendar.MaxDate = new System.DateTime(2022, 2, 28, 0, 0, 0, 0);
@@ -245,17 +252,18 @@
             // 
             // EditorPanel
             // 
-            this.EditorPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.EditorPanel.BackColor = System.Drawing.Color.White;
             this.EditorPanel.Controls.Add(this.editorSplit);
             this.EditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EditorPanel.Location = new System.Drawing.Point(803, 103);
             this.EditorPanel.Name = "EditorPanel";
             this.tableLayoutPanel1.SetRowSpan(this.EditorPanel, 2);
-            this.EditorPanel.Size = new System.Drawing.Size(473, 659);
+            this.EditorPanel.Size = new System.Drawing.Size(726, 659);
             this.EditorPanel.TabIndex = 3;
             // 
             // editorSplit
             // 
+            this.editorSplit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.editorSplit.Cursor = System.Windows.Forms.Cursors.HSplit;
             this.editorSplit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.editorSplit.Location = new System.Drawing.Point(0, 0);
@@ -265,26 +273,41 @@
             // editorSplit.Panel1
             // 
             this.editorSplit.Panel1.Controls.Add(this.editorTextBox);
-            this.editorSplit.Size = new System.Drawing.Size(473, 659);
+            // 
+            // editorSplit.Panel2
+            // 
+            this.editorSplit.Panel2.BackColor = System.Drawing.Color.White;
+            this.editorSplit.Size = new System.Drawing.Size(726, 659);
             this.editorSplit.SplitterDistance = 327;
             this.editorSplit.TabIndex = 0;
             // 
             // editorTextBox
             // 
+            this.editorTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.editorTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.editorTextBox.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.editorTextBox.Location = new System.Drawing.Point(0, 0);
             this.editorTextBox.Name = "editorTextBox";
-            this.editorTextBox.Size = new System.Drawing.Size(473, 327);
+            this.editorTextBox.Size = new System.Drawing.Size(724, 325);
             this.editorTextBox.TabIndex = 0;
             this.editorTextBox.Text = "";
             this.editorTextBox.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.themeSwitchBtn);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(803, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(726, 94);
+            this.panel1.TabIndex = 4;
+            // 
             // themeSwitchBtn
             // 
-            this.themeSwitchBtn.Location = new System.Drawing.Point(803, 3);
+            this.themeSwitchBtn.Location = new System.Drawing.Point(283, 3);
             this.themeSwitchBtn.Name = "themeSwitchBtn";
             this.themeSwitchBtn.Size = new System.Drawing.Size(118, 23);
-            this.themeSwitchBtn.TabIndex = 4;
+            this.themeSwitchBtn.TabIndex = 5;
             this.themeSwitchBtn.Text = "Switch theme";
             this.themeSwitchBtn.UseVisualStyleBackColor = true;
             this.themeSwitchBtn.Click += new System.EventHandler(this.themeSwitchBtn_Click);
@@ -293,7 +316,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1279, 839);
+            this.ClientSize = new System.Drawing.Size(1532, 839);
             this.Controls.Add(this.splitContainer1);
             this.MinimumSize = new System.Drawing.Size(1200, 800);
             this.Name = "Form1";
@@ -316,6 +339,7 @@
             this.editorSplit.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.editorSplit)).EndInit();
             this.editorSplit.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -339,6 +363,7 @@
         private ToolStripButton toolStripButton1;
         private SplitContainer editorSplit;
         private RichTextBox editorTextBox;
+        private Panel panel1;
         private Button themeSwitchBtn;
     }
 }
