@@ -41,6 +41,7 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
@@ -120,7 +121,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Controls.Add(this.splitContainer1);
+            this.DoubleBuffered = true;
             this.Name = "CustomCalendar";
             this.Size = new System.Drawing.Size(555, 425);
             this.splitContainer1.Panel1.ResumeLayout(false);

@@ -63,9 +63,9 @@ namespace Kalendarz.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _262886880_473752794308932_2738182543227623826_n1 {
+        internal static System.Drawing.Bitmap kapibara {
             get {
-                object obj = ResourceManager.GetObject("262886880_473752794308932_2738182543227623826_n1", resourceCulture);
+                object obj = ResourceManager.GetObject("kapibara", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -87,7 +87,7 @@ namespace Kalendarz.Db
 
                 entity.Property(e => e.Priority)
                     .HasColumnType("tinyint(4)")
-                    .HasColumnName("priority");
+                    .HasColumnName("Priority");
 
                 entity.HasOne(d => d.Entry)
                     .WithMany(p => p.Tags)

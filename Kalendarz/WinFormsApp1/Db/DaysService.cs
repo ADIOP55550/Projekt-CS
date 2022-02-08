@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Kalendarz.Db;
+using Microsoft.EntityFrameworkCore;
 
 namespace Kalendarz
 {
@@ -26,7 +27,8 @@ namespace Kalendarz
 
             using CalendarContext cc = new CalendarContext();
 
-            var entries = cc.Entries.Where(d => d.Date.Year == year && d.Date.Month == month).OrderBy(d => d.Date)
+            var entries = cc.Entries.Include(e => e.Tags).Where(d => d.Date.Year == year && d.Date.Month == month)
+                .OrderBy(d => d.Date)
                 .ToList();
 
 
@@ -40,7 +42,8 @@ namespace Kalendarz
         {
             using CalendarContext cc = new();
 
-            var elt = cc.Entries.AsEnumerable().Where(d => d.Date == day).FirstOrDefault(new Entry());
+            var elt = cc.Entries.Include(e => e.Tags).AsEnumerable().Where(d => d.Date == day)
+                .FirstOrDefault(new Entry());
 
             return elt != null ? elt.HighlightInfo : new HighlightInfo();
         }
@@ -49,10 +52,11 @@ namespace Kalendarz
         public Entry GetDayEntry(DateTime date)
         {
             using CalendarContext cc = new CalendarContext();
-            Entry elt = cc.Entries.AsEnumerable().Where(d => d.Date == date).FirstOrDefault(new Entry
-            {
-                Date = date
-            });
+            Entry elt = cc.Entries.Include(e => e.Tags).AsEnumerable().Where(d => d.Date == date).FirstOrDefault(
+                new Entry
+                {
+                    Date = date
+                });
             return elt;
         }
 

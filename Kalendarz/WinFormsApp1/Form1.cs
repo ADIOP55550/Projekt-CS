@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System.Diagnostics;
 using Kalendarz.Db;
 using Markdig;
@@ -49,8 +50,12 @@ namespace Kalendarz
 
             Invoke(() =>
             {
-                var entry = DaysService.GetInstance().GetDayEntry((DateTime)day);
+                var entry = DaysService.GetInstance().GetDayEntry((DateTime) day);
                 entry.Content = editorTextBox.Text;
+                entry.Tags = new List<Tag>();
+
+                foreach (CustomTag ct in flowLayoutPanel1.Controls) entry.Tags.Add(ct.Tag);
+
                 DaysService.GetInstance().SaveDayEntry(entry);
 
                 customCalendar1.ReloadDay(entry.Date);
@@ -77,8 +82,6 @@ namespace Kalendarz
 
             editorSplit.Panel2.Controls.Add(_webBrowser);
 
-            // customCalendar1.FirstDayOfWeek = DayOfWeek.Sunday;
-
             PrevMonthCalendar.MinDate = startDate.AddMonths(-1);
             PrevMonthCalendar.MaxDate = startDate.AddDays(-1);
 
@@ -96,17 +99,18 @@ namespace Kalendarz
             if (e.Current != null)
                 SaveNote(e.Current);
 
-            Entry? entry = null;
+
+            flowLayoutPanel1.Controls.Clear();
+
 
             if (e.Next != null)
-                entry = LoadNewNote((DateTime)e.Next);
+                LoadNote((DateTime) e.Next);
             else
                 ClearTextField();
 
             this._selectedDate = e.Next;
 
             customCalendar1.ReloadDay(e.Next);
-
         }
 
         private void ClearTextField()
@@ -115,12 +119,16 @@ namespace Kalendarz
             TranspileMarkdown("");
         }
 
-        private Entry LoadNewNote(DateTime day)
+        private void LoadNote(DateTime day)
         {
             var entry = DaysService.GetInstance().GetDayEntry(day);
             editorTextBox.Text = entry.Content;
+
+            flowLayoutPanel1.Controls.Clear();
+            flowLayoutPanel1.Controls.AddRange(entry.Tags.Select(CustomTag.FromTag).ToArray());
+
+
             TranspileMarkdown(editorTextBox.Text);
-            return entry;
         }
 
         private void OnCustomCalendarMonthChanged(object calendar, DateTime time)
@@ -153,14 +161,11 @@ namespace Kalendarz
             customCalendar1.SelectDay(NextMonthCalendar.SelectionStart);
         }
 
-        private void ToolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-        }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             this.SaveCallbackDebounced();
-            TranspileMarkdown(((RichTextBox)sender).Text);
+            TranspileMarkdown(((RichTextBox) sender).Text);
         }
 
         private void TranspileMarkdown(string text)
@@ -185,20 +190,6 @@ namespace Kalendarz
             _webBrowser.DocumentText = html;
         }
 
-        private void themeSwitchBtn_Click(object sender, EventArgs e)
-        {
-            this.UseDarkTheme = !this.UseDarkTheme;
-        }
-
-        private void ToolStrip_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -210,19 +201,20 @@ namespace Kalendarz
         private void button1_Click(object sender, EventArgs e)
         {
             panel2.Visible = true;
+            textBox1.Focus();
         }
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
             CustomTag newtag = new CustomTag();
 
-            newtag.title = textBox1.Text;
+            newtag.Title = textBox1.Text;
             textBox1.Clear();
             newtag.BackColor = bgcolor;
 
             newtag.ForeColor = bgcolor.GetBrightness() > 0.6 ? Color.Black : Color.White;
 
-            newtag.priority = prioritySlider.Value;
+            newtag.Priority = prioritySlider.Value;
 
 
             flowLayoutPanel1.Controls.Add(newtag);
@@ -230,8 +222,6 @@ namespace Kalendarz
             currentColorPanel.BackColor = Color.White;
             prioritySlider.Value = 0;
             panel2.Visible = false;
-
-
         }
 
         private void declineButton_Click(object sender, EventArgs e)
@@ -240,21 +230,26 @@ namespace Kalendarz
             bgcolor = Color.Transparent;
             textBox1.Clear();
             prioritySlider.Value = 0;
-
         }
 
         private void ColorLabel_Click(object sender, EventArgs e)
         {
             ColorDialog cd = new ColorDialog();
 
-            cd.AllowFullOpen = false;
+            cd.AllowFullOpen = true;
+            cd.AnyColor = true;
+            cd.FullOpen = true;
 
             cd.ShowDialog();
 
             bgcolor = cd.Color;
             currentColorPanel.BackColor = bgcolor;
+        }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            kapibaraLabel.Text = DateTime.Today.Day.ToString();
+            Util.setTimeout(() => { Invoke(() => { customCalendar1.SelectDay(DateTime.Today); }); }, 1);
         }
     }
-
 }

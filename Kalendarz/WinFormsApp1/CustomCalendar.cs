@@ -172,6 +172,7 @@ namespace Kalendarz
         public CustomCalendar()
         {
             InitializeComponent();
+            // this.calendarGrid.BackColor = Color.FromArgb(80, 255, 255, 255);
             init();
         }
 
@@ -210,27 +211,7 @@ namespace Kalendarz
                     Size = singleLabelSize
                 };
                 calendarDay.BorderThickness = 3;
-
-                calendarDay.DoubleClick +=
-                    (indicator, args) =>
-                    {
-                        ((CalendarDay) indicator!).HighlightInfo += new HighlightInfo
-                        {
-                            IndicatorColor = Color.MediumPurple
-                        };
-                    };
-
                 calendarDay.MouseDown += (sender, args) => { SelectedDay = (CalendarDay) sender!; };
-
-                calendarDay.MouseWheel +=
-                    (indicator, args) =>
-                    {
-                        ((CalendarDay) indicator!).HighlightInfo +=
-                            new HighlightInfo
-                            {
-                                IndicatorBorderColor = Color.Goldenrod
-                            };
-                    };
 
                 _days[i] = calendarDay;
                 calendarGrid.Controls.Add(calendarDay);

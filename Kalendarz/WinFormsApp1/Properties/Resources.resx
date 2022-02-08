@@ -133,7 +133,7 @@
   <data name="MarkdownGithubThemeLight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\github-markdown-light.css;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
   </data>
-  <data name="262886880_473752794308932_2738182543227623826_n1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\262886880_473752794308932_2738182543227623826_n.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="kapibara" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\kapibara.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
