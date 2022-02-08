@@ -19,3 +19,42 @@ G:\Uniwersytet\Programowanie Obiektowe\CSharp\projekt\Kalendarz\WinFormsApp1\obj
 G:\Uniwersytet\Programowanie Obiektowe\CSharp\projekt\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.CalendarDay.resources
 G:\Uniwersytet\Programowanie Obiektowe\CSharp\projekt\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Markdig.dll
 G:\Uniwersytet\Programowanie Obiektowe\CSharp\projekt\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.csproj.CopyComplete
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Kalendarz.exe
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Kalendarz.deps.json
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Kalendarz.runtimeconfig.json
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Kalendarz.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\ref\Kalendarz.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Kalendarz.pdb
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Humanizer.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Markdig.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Microsoft.Extensions.Options.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.csproj.AssemblyReference.cache
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.CalendarDay.resources
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.CustomCalendar.resources
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.Form1.resources
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.Properties.Resources.resources
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.csproj.GenerateResource.cache
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.AssemblyInfoInputs.cache
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.AssemblyInfo.cs
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.csproj.CoreCompileInputs.cache
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.csproj.CopyComplete
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\ref\Kalendarz.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.pdb
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.genruntimeconfig.cache
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\MySqlConnector.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\bin\Debug\net6.0-windows\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\FK\Desktop\dev\Projekt-CS-dev\Kalendarz\WinFormsApp1\obj\Debug\net6.0-windows\Kalendarz.CreateTag.resources

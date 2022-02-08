@@ -10,6 +10,8 @@ namespace Kalendarz
         private readonly string _stylesDark = Properties.Resources.MarkdownGithubThemeDark;
         private bool _useDarkTheme;
 
+        private Color bgcolor = Color.White;
+
         public bool UseDarkTheme
         {
             get => _useDarkTheme;
@@ -35,6 +37,7 @@ namespace Kalendarz
         public Form1()
         {
             InitializeComponent();
+            panel2.Visible = false;
             var now = DateTime.Now;
             var startDate = new DateTime(now.Year, now.Month, 1);
 
@@ -120,6 +123,73 @@ namespace Kalendarz
         private void themeSwitchBtn_Click(object sender, EventArgs e)
         {
             this.UseDarkTheme = !this.UseDarkTheme;
+        }
+
+        private void ToolStrip_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+            flowLayoutPanel1.FlowDirection = FlowDirection.LeftToRight;
+            flowLayoutPanel1.AutoScroll = true;
+            VerticalScroll.Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = true;
+        }
+
+        private void confirmButton_Click(object sender, EventArgs e)
+        {
+            CreateTag newtag = new CreateTag();
+
+            newtag.title = textBox1.Text;
+            textBox1.Clear();
+            newtag.BackColor = bgcolor;
+
+            newtag.ForeColor = bgcolor.GetBrightness() > 0.6 ? Color.Black : Color.White;
+
+            newtag.priority = prioritySlider.Value;
+
+
+            flowLayoutPanel1.Controls.Add(newtag);
+
+            currentColorPanel.BackColor = Color.White;
+            panel2.Visible = false;
+
+
+        }
+
+        private void declineButton_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+            bgcolor = Color.Transparent;
+            textBox1.Clear();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+
+            cd.AllowFullOpen = false;
+
+            cd.ShowDialog();
+
+            bgcolor = cd.Color;
+            currentColorPanel.BackColor = bgcolor;
+
+            using (calendarcontextContext cc = new calendarcontextContext)
+            {
+                cc.Entries.Add()
+            }
         }
     }
 }

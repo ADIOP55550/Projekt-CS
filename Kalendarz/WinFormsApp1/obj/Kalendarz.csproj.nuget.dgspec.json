@@ -1,24 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Uniwersytet\\Programowanie Obiektowe\\CSharp\\projekt\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj": {}
+    "C:\\Users\\FK\\Desktop\\dev\\Projekt-CS-dev\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj": {}
   },
   "projects": {
-    "G:\\Uniwersytet\\Programowanie Obiektowe\\CSharp\\projekt\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj": {
+    "C:\\Users\\FK\\Desktop\\dev\\Projekt-CS-dev\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Uniwersytet\\Programowanie Obiektowe\\CSharp\\projekt\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj",
+        "projectUniqueName": "C:\\Users\\FK\\Desktop\\dev\\Projekt-CS-dev\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj",
         "projectName": "Kalendarz",
-        "projectPath": "G:\\Uniwersytet\\Programowanie Obiektowe\\CSharp\\projekt\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj",
-        "packagesPath": "C:\\Users\\klamu\\.nuget\\packages\\",
-        "outputPath": "G:\\Uniwersytet\\Programowanie Obiektowe\\CSharp\\projekt\\Kalendarz\\WinFormsApp1\\obj\\",
+        "projectPath": "C:\\Users\\FK\\Desktop\\dev\\Projekt-CS-dev\\Kalendarz\\WinFormsApp1\\Kalendarz.csproj",
+        "packagesPath": "C:\\Users\\FK\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\FK\\Desktop\\dev\\Projekt-CS-dev\\Kalendarz\\WinFormsApp1\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\klamu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\FK\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0-windows7.0"
+          "net6.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -43,6 +47,26 @@
             "Markdig": {
               "target": "Package",
               "version": "[0.27.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             }
           },
           "imports": [
