@@ -15,9 +15,14 @@ namespace Kalendarz
     public partial class CustomCalendar : UserControl
     {
         /// <summary>
-        /// Date change event sentinel type
+        /// Month change event sentinel type
         /// </summary>
-        private static readonly object s_dateChanged = new();
+        private static readonly object s_monthChanged = new();
+
+        /// <summary>
+        /// Selected day change event sentinel type
+        /// </summary>
+        private static readonly object s_selectedDayChanged = new();
 
         private readonly static int daysCount = 42;
         private int _currMonth = DateTime.Today.Month;
@@ -31,6 +36,11 @@ namespace Kalendarz
             this._currMonth = day.Month;
             this.CurrYear = day.Year;
             SelectedDay = _days.FirstOrDefault(d => d != null && d.Day.Equals(day), null);
+        }
+
+        public CalendarDay? GetCalendarDayByDate(DateTime day)
+        {
+            return this._days.SingleOrDefault(d => d.Day.Equals(day), null);
         }
 
         public CalendarDay? SelectedDay
@@ -52,6 +62,14 @@ namespace Kalendarz
                     }
                 }
 
+                ((EventHandler<CustomDateChangeEventArgs>?) Events[s_selectedDayChanged])?.Invoke(this,
+                    new CustomDateChangeEventArgs
+                    {
+                        Current = _selectedDay?.Day,
+                        Next = value?.Day
+                    }
+                );
+
                 // Update current value
                 _selectedDay = value;
 
@@ -61,6 +79,7 @@ namespace Kalendarz
                     _selectedDay.IsSelected = true;
             }
         }
+
 
         public int CurrMonth
         {
@@ -84,7 +103,9 @@ namespace Kalendarz
                 this.monthLabel.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(_currMonth) + " " +
                                        this.CurrYear;
 
-                ((EventHandler<DateTime>?) Events[s_dateChanged])?.Invoke(this,
+                this.SelectedDay = null;
+
+                ((EventHandler<DateTime>?) Events[s_monthChanged])?.Invoke(this,
                     new DateTime(this._currYear, this._currMonth, 1));
 
                 _highlightInfos.Clear();
@@ -93,6 +114,16 @@ namespace Kalendarz
 
                 UpdateDaysNumbers();
             }
+        }
+
+        public void ReloadDay(DateTime? day)
+        {
+            if (day == null)
+                return;
+
+            var cDay = this.GetCalendarDayByDate((DateTime) day);
+            if (cDay != null)
+                cDay.HighlightInfo = DaysService.GetInstance().GetHighlightInfoForDay((DateTime) day);
         }
 
         public int CurrYear
@@ -104,7 +135,10 @@ namespace Kalendarz
                 this.monthLabel.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(_currMonth) + " " +
                                        this.CurrYear;
 
-                ((EventHandler<DateTime>?) Events[s_dateChanged])?.Invoke(this,
+                this.SelectedDay = null;
+
+
+                ((EventHandler<DateTime>?) Events[s_monthChanged])?.Invoke(this,
                     new DateTime(this._currYear, this._currMonth, 1));
 
                 _highlightInfos.Clear();
@@ -118,10 +152,18 @@ namespace Kalendarz
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        public event EventHandler<DateTime>? DateChanged
+        public event EventHandler<DateTime>? MonthChanged
         {
-            add => Events.AddHandler(s_dateChanged, value);
-            remove => Events.RemoveHandler(s_dateChanged, value);
+            add => Events.AddHandler(s_monthChanged, value);
+            remove => Events.RemoveHandler(s_monthChanged, value);
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        public event EventHandler<CustomDateChangeEventArgs>? SelectedDayChanged
+        {
+            add => Events.AddHandler(s_selectedDayChanged, value);
+            remove => Events.RemoveHandler(s_selectedDayChanged, value);
         }
 
 
@@ -178,64 +220,21 @@ namespace Kalendarz
                         };
                     };
 
-                calendarDay.MouseDown += (sender, args) =>
-                {
-                    switch (args.Button)
-                    {
-                        case MouseButtons.Left:
-                            SelectedDay = (CalendarDay) sender!;
-                            // ((CalendarDay) sender!).BorderColor = Color.DarkBlue;
-                            break;
-                        case MouseButtons.Right:
-                            ((CalendarDay) sender!).HighlightInfo += new HighlightInfo
-                            {
-                                HighlightColor = Color.Aquamarine
-                            };
-                            break;
-                    }
-
-                    // ((CalendarDay) sender!).Invalidate();
-
-                    // UpdateDaysNumbers();
-                };
+                calendarDay.MouseDown += (sender, args) => { SelectedDay = (CalendarDay) sender!; };
 
                 calendarDay.MouseWheel +=
                     (indicator, args) =>
                     {
-                        // starredDays.Add(((CalendarDay) indicator!).Day);
-
                         ((CalendarDay) indicator!).HighlightInfo +=
                             new HighlightInfo
                             {
                                 IndicatorBorderColor = Color.Goldenrod
                             };
-
-
-                        // ((CalendarDay) indicator).Invalidate();
                     };
 
                 _days[i] = calendarDay;
                 calendarGrid.Controls.Add(calendarDay);
             }
-        }
-
-        private void OnCalendarDayOnMouseDown(object sender, MouseEventArgs args)
-        {
-            switch (args.Button)
-            {
-                case MouseButtons.Left:
-                    SelectedDay = (CalendarDay) sender!;
-                    // ((CalendarDay) sender!).BorderColor = Color.DarkBlue;
-                    break;
-                case MouseButtons.Right:
-                    ((CalendarDay) sender!).HighlightInfo += new HighlightInfo
-                    {
-                        HighlightColor = Color.Aquamarine
-                    };
-                    break;
-            }
-
-            UpdateDaysNumbers();
         }
 
         private void UpdateDaysNumbers()

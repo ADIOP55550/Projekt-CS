@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using Kalendarz.Db;
 using Markdig;
 
 
@@ -30,8 +32,34 @@ namespace Kalendarz
                     editorTextBox.ForeColor = Color.Black;
                     _webBrowser.BackColor = Color.White;
                 }
+
                 TranspileMarkdown(editorTextBox.Text);
             }
+        }
+
+        private Action SaveCallbackDebounced;
+        private DateTime? _selectedDate;
+
+        private void SaveNote(DateTime? day)
+        {
+            // save to Db
+
+            if (day == null)
+                return;
+
+            Invoke(() =>
+            {
+                var entry = DaysService.GetInstance().GetDayEntry((DateTime)day);
+                entry.Content = editorTextBox.Text;
+                DaysService.GetInstance().SaveDayEntry(entry);
+
+                customCalendar1.ReloadDay(entry.Date);
+            });
+        }
+
+        private void SaveCurrentNote()
+        {
+            this.SaveNote(this._selectedDate);
         }
 
         public Form1()
@@ -42,14 +70,14 @@ namespace Kalendarz
             var now = DateTime.Now;
             var startDate = new DateTime(now.Year, now.Month, 1);
 
+            SaveCallbackDebounced = Util.Debounce(this.SaveCurrentNote, 1000);
+
             this._webBrowser = new WebBrowser();
             _webBrowser.Dock = DockStyle.Fill;
 
             editorSplit.Panel2.Controls.Add(_webBrowser);
 
-
-            customCalendar1.FirstDayOfWeek = DayOfWeek.Sunday;
-            // customCalendar1.init();
+            // customCalendar1.FirstDayOfWeek = DayOfWeek.Sunday;
 
             PrevMonthCalendar.MinDate = startDate.AddMonths(-1);
             PrevMonthCalendar.MaxDate = startDate.AddDays(-1);
@@ -57,18 +85,53 @@ namespace Kalendarz
             NextMonthCalendar.MaxDate = startDate.AddMonths(2).AddDays(-1);
             NextMonthCalendar.MinDate = startDate.AddMonths(1);
 
-            customCalendar1.DateChanged += (calendar, time) =>
-            {
-                PrevMonthCalendar.MaxDate = DateTime.MaxValue;
-                PrevMonthCalendar.MinDate = time.AddMonths(-1);
-                PrevMonthCalendar.MaxDate = time.AddDays(-1);
-
-                NextMonthCalendar.MinDate = DateTime.UnixEpoch;
-                NextMonthCalendar.MaxDate = time.AddMonths(2).AddDays(-1);
-                NextMonthCalendar.MinDate = time.AddMonths(1);
-            };
+            customCalendar1.MonthChanged += OnCustomCalendarMonthChanged;
+            customCalendar1.SelectedDayChanged += OnCustomCalendarSelectedDayChanged;
 
             TranspileMarkdown("");
+        }
+
+        private void OnCustomCalendarSelectedDayChanged(object? sender, CustomDateChangeEventArgs e)
+        {
+            if (e.Current != null)
+                SaveNote(e.Current);
+
+            Entry? entry = null;
+
+            if (e.Next != null)
+                entry = LoadNewNote((DateTime)e.Next);
+            else
+                ClearTextField();
+
+            this._selectedDate = e.Next;
+
+            customCalendar1.ReloadDay(e.Next);
+
+        }
+
+        private void ClearTextField()
+        {
+            editorTextBox.Clear();
+            TranspileMarkdown("");
+        }
+
+        private Entry LoadNewNote(DateTime day)
+        {
+            var entry = DaysService.GetInstance().GetDayEntry(day);
+            editorTextBox.Text = entry.Content;
+            TranspileMarkdown(editorTextBox.Text);
+            return entry;
+        }
+
+        private void OnCustomCalendarMonthChanged(object calendar, DateTime time)
+        {
+            PrevMonthCalendar.MaxDate = DateTime.MaxValue;
+            PrevMonthCalendar.MinDate = time.AddMonths(-1);
+            PrevMonthCalendar.MaxDate = time.AddDays(-1);
+
+            NextMonthCalendar.MinDate = DateTime.UnixEpoch;
+            NextMonthCalendar.MaxDate = time.AddMonths(2).AddDays(-1);
+            NextMonthCalendar.MinDate = time.AddMonths(1);
         }
 
         private void CurrMonthPanel_Paint(object sender, PaintEventArgs e)
@@ -96,7 +159,8 @@ namespace Kalendarz
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            TranspileMarkdown(((RichTextBox) sender).Text);
+            this.SaveCallbackDebounced();
+            TranspileMarkdown(((RichTextBox)sender).Text);
         }
 
         private void TranspileMarkdown(string text)
@@ -192,4 +256,5 @@ namespace Kalendarz
 
         }
     }
+
 }
