@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -99,7 +100,6 @@ namespace Kalendarz
                     _currYear--;
                 }
 
-
                 this.monthLabel.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(_currMonth) + " " +
                                        this.CurrYear;
 
@@ -107,10 +107,6 @@ namespace Kalendarz
 
                 ((EventHandler<DateTime>?) Events[s_monthChanged])?.Invoke(this,
                     new DateTime(this._currYear, this._currMonth, 1));
-
-                _highlightInfos.Clear();
-                this._highlightInfos =
-                    DaysService.GetInstance().GetHighlightInfosForMonth(this.CurrYear, this.CurrMonth);
 
                 UpdateDaysNumbers();
             }
@@ -141,11 +137,6 @@ namespace Kalendarz
                 ((EventHandler<DateTime>?) Events[s_monthChanged])?.Invoke(this,
                     new DateTime(this._currYear, this._currMonth, 1));
 
-                _highlightInfos.Clear();
-                _highlightInfos =
-                    DaysService.GetInstance().GetHighlightInfosForMonth(this.CurrYear, this.CurrMonth);
-
-
                 UpdateDaysNumbers();
             }
         }
@@ -172,7 +163,6 @@ namespace Kalendarz
         public CustomCalendar()
         {
             InitializeComponent();
-            // this.calendarGrid.BackColor = Color.FromArgb(80, 255, 255, 255);
             init();
         }
 
@@ -192,8 +182,6 @@ namespace Kalendarz
                 label.Font = new Font(label.Font.Name, label.Font.Size + 2);
                 label.Text = day.ToString();
                 calendarGrid.Controls.Add(label);
-                // calendarGrid.SetColumn(label, i);
-                // calendarGrid.SetRow(label, 0);
             }
         }
 
@@ -220,28 +208,31 @@ namespace Kalendarz
 
         private void UpdateDaysNumbers()
         {
+            _highlightInfos.Clear();
+            _highlightInfos =
+                DaysService.GetInstance().GetHighlightInfosForMonthAndSurroundingWeeks(this.CurrYear, this.CurrMonth);
+
+
             var firstDay = new DateTime(this.CurrYear, this.CurrMonth, 1);
             // 7 is added to prevent negative numbers which screw with the % operator
             var addDaysFromPrevMonth = ((int) firstDay.DayOfWeek - (int) FirstDayOfWeek + 7) % 7;
             var numDaysInMonth = DateTime.DaysInMonth(CurrYear, CurrMonth);
 
             this.SuspendLayout();
-
             for (int i = 0; i < daysCount; i++)
             {
                 var calendarDay = _days[i];
-
+                var cd = calendarDay;
                 var day = firstDay.AddDays(i - addDaysFromPrevMonth);
                 _days[i].Day = day;
 
-                calendarDay.HighlightInfo =
+                cd.HighlightInfo =
                     _highlightInfos.ContainsKey(day)
                         ? _highlightInfos[day]
-                        : DaysService.GetInstance().GetHighlightInfoForDay(day); // new HighlightInfo();
-                calendarDay.IsLowlighted = i >= numDaysInMonth + addDaysFromPrevMonth || i < addDaysFromPrevMonth;
-                // Override border color if the day is current_day or is selected
-                calendarDay.BorderColor =
-                    CalculateBorderColor(calendarDay, calendarDay.BorderColor);
+                        : new HighlightInfo();
+                cd.IsLowlighted = i >= numDaysInMonth + addDaysFromPrevMonth || i < addDaysFromPrevMonth;
+                cd.BorderColor =
+                    CalculateBorderColor(cd, cd.BorderColor);
             }
 
             this.ResumeLayout();

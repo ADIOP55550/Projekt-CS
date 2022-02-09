@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using Kalendarz.Db;
 using Markdig;
 
@@ -12,7 +13,8 @@ namespace Kalendarz
         private readonly string _styles = Properties.Resources.MarkdownGithubThemeLight;
         private readonly string _stylesDark = Properties.Resources.MarkdownGithubThemeDark;
         private bool _useDarkTheme;
-
+        private Action SaveCallbackDebounced;
+        private DateTime? _selectedDate;
         private Color bgcolor = Color.White;
 
         public bool UseDarkTheme
@@ -38,8 +40,6 @@ namespace Kalendarz
             }
         }
 
-        private Action SaveCallbackDebounced;
-        private DateTime? _selectedDate;
 
         private void SaveNote(DateTime? day)
         {
@@ -67,9 +67,16 @@ namespace Kalendarz
             this.SaveNote(this._selectedDate);
         }
 
+        // [DllImport("kernel32.dll", SetLastError = true)]
+        // [return: MarshalAs(UnmanagedType.Bool)]
+        // static extern bool AllocConsole();
+
         public Form1()
         {
             InitializeComponent();
+            // if (AllocConsole() == false)
+            //     throw new Exception("Console could not be allocated.");
+
             panel2.Visible = false;
             currentColorPanel.BackColor = Color.White;
             var now = DateTime.Now;
@@ -206,18 +213,25 @@ namespace Kalendarz
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text.Trim() == "")
+            {
+                MessageBox.Show("Nie podano nazwy taga");
+                return;
+            }
+
+
             CustomTag newtag = new CustomTag();
 
-            newtag.Title = textBox1.Text;
+
+            newtag.Title = textBox1.Text.Trim();
             textBox1.Clear();
             newtag.BackColor = bgcolor;
-
-            newtag.ForeColor = bgcolor.GetBrightness() > 0.6 ? Color.Black : Color.White;
-
+            var brightness = bgcolor.GetBrightness();
+            MessageBox.Show(brightness.ToString());
+            newtag.ForeColor = brightness > 0.4 ? Color.Black : Color.White;
             newtag.Priority = prioritySlider.Value;
-            
-            flowLayoutPanel1.Controls.Add(newtag);
 
+            flowLayoutPanel1.Controls.Add(newtag);
 
 
             currentColorPanel.BackColor = Color.White;

@@ -67,7 +67,7 @@ namespace Kalendarz
             newTag.Title = tag.Name;
             var bgColor = ColorTranslator.FromHtml(tag.Color);
             newTag.BackColor = bgColor;
-            newTag.ForeColor = bgColor.GetBrightness() > 0.6 ? Color.Black : Color.White;
+            newTag.label1.ForeColor = bgColor.GetBrightness() > 0.4 ? Color.Black : Color.White;
             newTag.Priority = tag.Priority;
 
             return newTag;

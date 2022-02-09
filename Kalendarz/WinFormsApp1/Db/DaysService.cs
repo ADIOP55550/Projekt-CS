@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,8 @@ namespace Kalendarz
         {
             using CalendarContext cc = new();
 
+            Debug.WriteLine("Getting highlihtInfo for day " + day.ToShortDateString());
+
             var elt = cc.Entries.Include(e => e.Tags).AsEnumerable().Where(d => d.Date == day)
                 .FirstOrDefault(new Entry());
 
@@ -74,6 +77,29 @@ namespace Kalendarz
 
 
             cc.SaveChanges();
+        }
+
+        public Dictionary<DateTime, HighlightInfo> GetHighlightInfosForMonthAndSurroundingWeeks(int currYear,
+            int currMonth)
+        {
+            Dictionary<DateTime, HighlightInfo> result = new();
+
+            var from = new DateTime(currYear, currMonth, 1).AddDays(-7);
+            var to = new DateTime(currYear, currMonth, 1).AddMonths(1).AddDays(15);
+
+            using CalendarContext cc = new();
+
+            var entries = cc.Entries.Include(e => e.Tags).Where(
+                    d => d.Date > from && d.Date < to
+                )
+                .OrderBy(d => d.Date)
+                .ToList();
+
+
+            foreach (var entry in entries)
+                result.Add(entry.Date, entry.HighlightInfo);
+
+            return result;
         }
     }
 }
