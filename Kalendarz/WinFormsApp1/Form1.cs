@@ -17,6 +17,7 @@ namespace Kalendarz
         private DateTime? _selectedDate;
         private Color bgcolor = Color.White;
 
+
         public bool UseDarkTheme
         {
             get => _useDarkTheme;
@@ -208,6 +209,7 @@ namespace Kalendarz
         private void button1_Click(object sender, EventArgs e)
         {
             panel2.Visible = true;
+            highlightcheckbox.Checked = false;
             textBox1.Focus();
         }
 
@@ -230,6 +232,11 @@ namespace Kalendarz
             MessageBox.Show(brightness.ToString());
             newtag.ForeColor = brightness > 0.4 ? Color.Black : Color.White;
             newtag.Priority = prioritySlider.Value;
+            if (highlightcheckbox.Checked)
+            {
+                newtag.Highlight = true;
+
+            }
 
             flowLayoutPanel1.Controls.Add(newtag);
 
@@ -265,11 +272,7 @@ namespace Kalendarz
         {
             kapibaraLabel.Text = DateTime.Today.Day.ToString();
             Util.setTimeout(() => { Invoke(() => { customCalendar1.SelectDay(DateTime.Today); }); }, 1);
-        }
-
-        private void HighlightButton_CheckedChanged(object sender, EventArgs e)
-        {
-            //TODO
+           
         }
     }
 }

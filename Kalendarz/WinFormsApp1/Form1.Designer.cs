@@ -46,7 +46,6 @@
             this.EditorPanel = new System.Windows.Forms.Panel();
             this.editorSplit = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.HighlightButton = new System.Windows.Forms.RadioButton();
             this.panel5 = new System.Windows.Forms.Panel();
             this.priorityLabel = new System.Windows.Forms.Label();
             this.prioritySlider = new System.Windows.Forms.TrackBar();
@@ -62,6 +61,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.highlightcheckbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -310,7 +310,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.LightSkyBlue;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.HighlightButton);
+            this.panel2.Controls.Add(this.highlightcheckbox);
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.panel3);
@@ -323,18 +323,6 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(20);
             this.panel2.Size = new System.Drawing.Size(252, 310);
             this.panel2.TabIndex = 1;
-            // 
-            // HighlightButton
-            // 
-            this.HighlightButton.AutoSize = true;
-            this.HighlightButton.Location = new System.Drawing.Point(93, 196);
-            this.HighlightButton.Name = "HighlightButton";
-            this.HighlightButton.Size = new System.Drawing.Size(75, 19);
-            this.HighlightButton.TabIndex = 13;
-            this.HighlightButton.TabStop = true;
-            this.HighlightButton.Text = "Highlight";
-            this.HighlightButton.UseVisualStyleBackColor = true;
-            this.HighlightButton.CheckedChanged += new System.EventHandler(this.HighlightButton_CheckedChanged);
             // 
             // panel5
             // 
@@ -496,6 +484,16 @@
             this.flowLayoutPanel1.TabIndex = 6;
             this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
+            // highlightcheckbox
+            // 
+            this.highlightcheckbox.AutoSize = true;
+            this.highlightcheckbox.Location = new System.Drawing.Point(86, 196);
+            this.highlightcheckbox.Name = "highlightcheckbox";
+            this.highlightcheckbox.Size = new System.Drawing.Size(76, 19);
+            this.highlightcheckbox.TabIndex = 13;
+            this.highlightcheckbox.Text = "Highlight";
+            this.highlightcheckbox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -572,6 +570,6 @@
         private Button confirmButton;
         private Label kapibaraLabel;
         private Label label1;
-        private RadioButton HighlightButton;
+        private CheckBox highlightcheckbox;
     }
 }

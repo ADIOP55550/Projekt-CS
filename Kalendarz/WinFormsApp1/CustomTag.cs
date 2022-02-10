@@ -15,6 +15,8 @@ namespace Kalendarz
     {
         private int _priority;
         private int _color;
+        private bool _highlight;
+
 
         public string Title
         {
@@ -37,6 +39,18 @@ namespace Kalendarz
             }
         }
 
+        public bool Highlight
+        {
+            get => _highlight;
+
+            set
+            {
+                _highlight = value;
+                this.Invalidate();
+            }
+        }
+
+
 
         public CustomTag()
         {
@@ -56,7 +70,7 @@ namespace Kalendarz
             Id = this.Id,
             Color = ColorTranslator.ToHtml(this.BackColor),
             Priority = (sbyte) this.Priority,
-            Highlight = false, // todo
+            Highlight = (bool)this.Highlight, // todo
         };
 
         public static CustomTag FromTag(Tag tag)
@@ -69,6 +83,7 @@ namespace Kalendarz
             newTag.BackColor = bgColor;
             newTag.label1.ForeColor = bgColor.GetBrightness() > 0.4 ? Color.Black : Color.White;
             newTag.Priority = tag.Priority;
+            newTag.Highlight = tag.Highlight;
 
             return newTag;
         }
