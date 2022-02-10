@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -16,6 +17,33 @@ namespace Kalendarz
         private Action SaveCallbackDebounced;
         private DateTime? _selectedDate;
         private Color bgcolor = Color.White;
+
+        private Image[] capybaras = new[]
+        {
+            Properties.Resources.kapibara1,
+            Properties.Resources.kapibara2,
+            Properties.Resources.kapibara3,
+            Properties.Resources.kapibara4,
+            Properties.Resources.kapibara5,
+            Properties.Resources.kapibara6,
+            Properties.Resources.kapibara7,
+            Properties.Resources.kapibara8,
+            Properties.Resources.kapibara9,
+            Properties.Resources.kapibara10,
+            Properties.Resources.kapibara11,
+            Properties.Resources.kapibara12,
+            Properties.Resources.kapibara13,
+            Properties.Resources.kapibara14,
+            Properties.Resources.kapibara15,
+            Properties.Resources.kapibara16,
+            Properties.Resources.kapibara17,
+            Properties.Resources.kapibara18,
+            Properties.Resources.kapibara19,
+            Properties.Resources.kapibara20,
+            Properties.Resources.kapibara21,
+            Properties.Resources.kapibara22,
+            Properties.Resources.kapibara23
+        };
 
 
         public bool UseDarkTheme
@@ -63,7 +91,7 @@ namespace Kalendarz
             });
         }
 
-        private void SaveCurrentNote()
+        public void SaveCurrentNote()
         {
             this.SaveNote(this._selectedDate);
         }
@@ -99,6 +127,8 @@ namespace Kalendarz
             customCalendar1.MonthChanged += OnCustomCalendarMonthChanged;
             customCalendar1.SelectedDayChanged += OnCustomCalendarSelectedDayChanged;
 
+
+
             TranspileMarkdown("");
         }
 
@@ -112,11 +142,15 @@ namespace Kalendarz
 
 
             if (e.Next != null)
+            {
                 LoadNote((DateTime) e.Next);
+                currentDayLabel.Text = e.Next.Value.ToLongDateString();
+            }
             else
                 ClearTextField();
 
             this._selectedDate = e.Next;
+
 
             customCalendar1.ReloadDay(e.Next);
         }
@@ -133,7 +167,10 @@ namespace Kalendarz
             editorTextBox.Text = entry.Content;
 
             flowLayoutPanel1.Controls.Clear();
-            flowLayoutPanel1.Controls.AddRange(entry.Tags.Select(CustomTag.FromTag).ToArray());
+            var customTags = entry.Tags.Select(CustomTag.FromTag).ToArray();
+            foreach (var customTag in customTags)
+                customTag.OnDeleted += (sender, args) => SaveCurrentNote();
+            flowLayoutPanel1.Controls.AddRange(customTags);
 
 
             TranspileMarkdown(editorTextBox.Text);
@@ -148,6 +185,33 @@ namespace Kalendarz
             NextMonthCalendar.MinDate = DateTime.UnixEpoch;
             NextMonthCalendar.MaxDate = time.AddMonths(2).AddDays(-1);
             NextMonthCalendar.MinDate = time.AddMonths(1);
+
+
+            PrevMonthCalendar.BoldedDates = DaysService.GetInstance()
+                .GetHighlightInfosForMonth(time.AddMonths(-1).Year, time.AddMonths(-1).Month)
+                .Where(pair =>
+                    pair.Value.IndicatorBorderColor != null
+                    && (Color) pair.Value.IndicatorBorderColor != Color.Transparent
+                    ||
+                    pair.Value.IndicatorColor != null
+                    && (Color) pair.Value.IndicatorColor != Color.Transparent 
+                    ||
+                    pair.Value.HighlightColor != null
+                    && (Color) pair.Value.HighlightColor != Color.Transparent
+                ).Select(pair => pair.Key).ToArray();            
+            
+            NextMonthCalendar.BoldedDates = DaysService.GetInstance()
+                .GetHighlightInfosForMonth(time.AddMonths(1).Year, time.AddMonths(1).Month)
+                .Where(pair =>
+                    pair.Value.IndicatorBorderColor != null
+                    && (Color) pair.Value.IndicatorBorderColor != Color.Transparent
+                    ||
+                    pair.Value.IndicatorColor != null
+                    && (Color) pair.Value.IndicatorColor != Color.Transparent 
+                    ||
+                    pair.Value.HighlightColor != null
+                    && (Color) pair.Value.HighlightColor != Color.Transparent
+                ).Select(pair => pair.Key).ToArray();
         }
 
         private void CurrMonthPanel_Paint(object sender, PaintEventArgs e)
@@ -224,6 +288,7 @@ namespace Kalendarz
 
             CustomTag newtag = new CustomTag();
 
+            newtag.OnDeleted += (sender, args) => SaveCurrentNote();
 
             newtag.Title = textBox1.Text.Trim();
             textBox1.Clear();
@@ -235,7 +300,6 @@ namespace Kalendarz
             if (highlightcheckbox.Checked)
             {
                 newtag.Highlight = true;
-
             }
 
             flowLayoutPanel1.Controls.Add(newtag);
@@ -244,6 +308,8 @@ namespace Kalendarz
             currentColorPanel.BackColor = Color.White;
             prioritySlider.Value = 0;
             panel2.Visible = false;
+
+            SaveCurrentNote();
         }
 
         private void declineButton_Click(object sender, EventArgs e)
@@ -272,7 +338,67 @@ namespace Kalendarz
         {
             kapibaraLabel.Text = DateTime.Today.Day.ToString();
             Util.setTimeout(() => { Invoke(() => { customCalendar1.SelectDay(DateTime.Today); }); }, 1);
-           
+        }
+
+        private void openFileButton_Click(object sender, EventArgs e)
+        {
+            var result = OpenMarkdownFileDialog.ShowDialog();
+            if (result != DialogResult.OK)
+                return;
+
+            var fileContent = File.ReadAllText(OpenMarkdownFileDialog.FileName);
+
+            editorTextBox.Text = fileContent;
+            TranspileMarkdown(fileContent);
+        }
+
+        private void saveFileButton_Click(object sender, EventArgs e)
+        {
+            var result = SaveMarkdownFileDialog.ShowDialog();
+            if (result != DialogResult.OK)
+                return;
+
+            File.WriteAllText(SaveMarkdownFileDialog.FileName, editorTextBox.Text);
+        }
+
+        private void copyButton_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(editorTextBox.Text);
+        }
+
+        private void pasteAppendButton_Click(object sender, EventArgs e)
+        {
+            editorTextBox.Text += Clipboard.GetText();
+            TranspileMarkdown(editorTextBox.Text);
+        }
+
+        private void pasteOverwriteButton_Click(object sender, EventArgs e)
+        {
+            editorTextBox.Text = Clipboard.GetText();
+            TranspileMarkdown(editorTextBox.Text);
+        }
+
+        private void kapibaraLabel_Click(object sender, EventArgs e)
+        {
+            Form kapibaraForm = new Form();
+
+            kapibaraForm.StartPosition = FormStartPosition.CenterParent;
+            kapibaraForm.BackColor = Color.White;
+            kapibaraForm.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            kapibaraForm.Text = "Twoja kapibara";
+            kapibaraForm.ControlBox = true;
+            Random r = new Random();
+            kapibaraForm.BackgroundImage = capybaras[r.Next(capybaras.Length)];
+            kapibaraForm.BackgroundImageLayout = ImageLayout.Zoom;
+
+            // var pictureBox = new PictureBox();
+            // pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            // pictureBox.Dock = DockStyle.Fill;
+            // Random r = new Random();
+            // pictureBox.Image = capybaras[r.Next(capybaras.Length)];
+            // kapibaraForm.Controls.Add(pictureBox);
+
+            kapibaraForm.ShowDialog();
         }
     }
 }

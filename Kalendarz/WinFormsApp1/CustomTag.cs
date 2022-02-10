@@ -13,6 +13,19 @@ namespace Kalendarz
 {
     public partial class CustomTag : UserControl
     {
+        /// <summary>
+        /// OnDelete event sentinel type
+        /// </summary>
+        private static readonly object s_deleted = new();
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        public event EventHandler? OnDeleted
+        {
+            add => Events.AddHandler(s_deleted, value);
+            remove => Events.RemoveHandler(s_deleted, value);
+        }
+
         private int _priority;
         private int _color;
         private bool _highlight;
@@ -51,7 +64,6 @@ namespace Kalendarz
         }
 
 
-
         public CustomTag()
         {
             InitializeComponent();
@@ -60,6 +72,7 @@ namespace Kalendarz
         private void button1_Click(object sender, EventArgs e)
         {
             this.Dispose();
+            ((EventHandler?) Events[s_deleted])?.Invoke(this, null!);
         }
 
         protected int Id;
@@ -70,7 +83,7 @@ namespace Kalendarz
             Id = this.Id,
             Color = ColorTranslator.ToHtml(this.BackColor),
             Priority = (sbyte) this.Priority,
-            Highlight = (bool)this.Highlight, // todo
+            Highlight = (bool) this.Highlight, // todo
         };
 
         public static CustomTag FromTag(Tag tag)

@@ -63,10 +63,14 @@
             // 
             // prevBtn
             // 
+            this.prevBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.prevBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.prevBtn.FlatAppearance.BorderSize = 0;
+            this.prevBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.prevBtn.Image = global::Kalendarz.Properties.Resources.left_arrow;
-            this.prevBtn.Location = new System.Drawing.Point(17, 11);
+            this.prevBtn.Location = new System.Drawing.Point(17, 3);
             this.prevBtn.Name = "prevBtn";
-            this.prevBtn.Size = new System.Drawing.Size(42, 34);
+            this.prevBtn.Size = new System.Drawing.Size(42, 42);
             this.prevBtn.TabIndex = 1;
             this.prevBtn.UseVisualStyleBackColor = true;
             this.prevBtn.Click += new System.EventHandler(this.prevBtn_Click);
@@ -74,10 +78,14 @@
             // nextBtn
             // 
             this.nextBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nextBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.nextBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.nextBtn.FlatAppearance.BorderSize = 0;
+            this.nextBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nextBtn.Image = global::Kalendarz.Properties.Resources.right_arrow;
-            this.nextBtn.Location = new System.Drawing.Point(497, 11);
+            this.nextBtn.Location = new System.Drawing.Point(497, 3);
             this.nextBtn.Name = "nextBtn";
-            this.nextBtn.Size = new System.Drawing.Size(41, 34);
+            this.nextBtn.Size = new System.Drawing.Size(41, 42);
             this.nextBtn.TabIndex = 1;
             this.nextBtn.UseVisualStyleBackColor = true;
             this.nextBtn.Click += new System.EventHandler(this.nextBtn_Click);
@@ -85,7 +93,7 @@
             // monthLabel
             // 
             this.monthLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.monthLabel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.monthLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.monthLabel.Location = new System.Drawing.Point(0, 0);
             this.monthLabel.Name = "monthLabel";
             this.monthLabel.Size = new System.Drawing.Size(555, 47);

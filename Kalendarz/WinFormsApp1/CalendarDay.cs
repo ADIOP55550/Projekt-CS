@@ -13,6 +13,11 @@ namespace Kalendarz
     public partial class CalendarDay : UserControl
     {
         /// <summary>
+        /// Selected/Deselected event sentinel type
+        /// </summary>
+        private static readonly object s_indicatorClicked = new();
+
+        /// <summary>
         /// The day this object is set to, also sets displayed text
         /// </summary>
         public DateTime Day
@@ -140,14 +145,14 @@ namespace Kalendarz
         /// <summary>
         /// Size of the inner indicator's border
         /// </summary>
-        public int IndicatorBorderThickness { get; } = 4;
+        public int IndicatorBorderThickness { get; set; } = 4;
 
         public Point IndicatorPosition { get; } = new(8, 8);
 
         /// <summary>
         /// Label border thickness
         /// </summary>
-        public int BorderThickness { get; set; } = 2;
+        public int BorderThickness { get; set; } = 1;
 
         public bool IsSelected
         {
@@ -168,6 +173,16 @@ namespace Kalendarz
                 this.ApplyHighlightInfo();
             }
         }
+
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        public event EventHandler<DateTime>? IndicatorClicked
+        {
+            add => Events.AddHandler(s_indicatorClicked, value);
+            remove => Events.RemoveHandler(s_indicatorClicked, value);
+        }
+
 
         private Color _indicatorInnerColor = Color.Transparent;
         private Color _indicatorColor = Color.Transparent;
@@ -191,14 +206,19 @@ namespace Kalendarz
                 // Get size of the indicator
                 var clientRectangle = ((Panel) sender).ClientRectangle;
                 clientRectangle.Inflate(
-                    new Size(-this.IndicatorBorderThickness / 2, -this.IndicatorBorderThickness / 2));
+                    new Size(-(this.IndicatorBorderThickness / 2 + 1), -(this.IndicatorBorderThickness / 2 + 1)));
                 // Draw border
-                e.Graphics.DrawRectangle(new Pen(IndicatorColor, this.IndicatorBorderThickness), clientRectangle);
+                e.Graphics.DrawEllipse(new Pen(IndicatorColor, this.IndicatorBorderThickness), clientRectangle);
                 // Resize rect to fit border size
                 clientRectangle.Inflate(
                     new Size(-this.IndicatorBorderThickness / 2, -this.IndicatorBorderThickness / 2));
                 // Draw center
-                e.Graphics.FillRectangle(new SolidBrush(IndicatorInnerColor), clientRectangle);
+                e.Graphics.FillEllipse(new SolidBrush(IndicatorInnerColor), clientRectangle);
+
+                ((Panel) sender).Cursor =
+                    IndicatorColor == Color.Transparent
+                        ? Cursors.Arrow
+                        : Cursors.Hand;
             }
         }
 
@@ -255,9 +275,15 @@ namespace Kalendarz
             indicator.Left = this.IndicatorPosition.X;
             indicator.Paint += this.OnIndicatorPaint;
 
-            indicator.Click += (sender, args) => this.OnClick(args);
-            indicator.DoubleClick += (sender, args) => this.OnDoubleClick(args);
-            indicator.MouseDown += (sender, args) => this.OnMouseDown(args);
+            // indicator.Click += (sender, args) => this.OnClick(args);
+            // indicator.DoubleClick += (sender, args) => this.OnDoubleClick(args);
+            // indicator.MouseDown += (sender, args) => this.OnMouseDown(args);
+            indicator.MouseDown += (sender, args) =>
+            {
+                if (args.Button == MouseButtons.Left)
+                    ((EventHandler<DateTime>?) Events[s_indicatorClicked])?.Invoke(this, this.Day);
+            };
+
 
             var borderPanel = new Panel();
             this._borderPanel = borderPanel;

@@ -25,7 +25,7 @@ namespace Kalendarz
         /// </summary>
         private static readonly object s_selectedDayChanged = new();
 
-        private readonly static int daysCount = 42;
+        private static readonly int daysCount = 42;
         private int _currMonth = DateTime.Today.Month;
         private int _currYear = DateTime.Today.Year;
         private CalendarDay? _selectedDay = null;
@@ -199,10 +199,19 @@ namespace Kalendarz
                     Size = singleLabelSize
                 };
                 calendarDay.BorderThickness = 3;
+                calendarDay.IndicatorBorderThickness = 3;
                 calendarDay.MouseDown += (sender, args) => { SelectedDay = (CalendarDay) sender!; };
 
                 _days[i] = calendarDay;
                 calendarGrid.Controls.Add(calendarDay);
+                calendarDay.IndicatorClicked += (sender, day) =>
+                {
+                    var entry = DaysService.GetInstance().GetDayEntry(day);
+                    entry.IsDone = !entry.IsDone;
+                    DaysService.GetInstance().SaveDayEntry(entry);
+                    Debug.WriteLine(entry.IsDone ? "Zaznaczone" : "Niezaznaczone");
+                    this.ReloadDay(day);
+                };
             }
         }
 

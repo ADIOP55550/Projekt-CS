@@ -28,7 +28,12 @@ namespace Kalendarz
 
             using CalendarContext cc = new CalendarContext();
 
-            var entries = cc.Entries.Include(e => e.Tags).Where(d => d.Date.Year == year && d.Date.Month == month)
+            var from = new DateTime(year, month, 1);
+            var to = from.AddMonths(1).AddDays(-1);
+
+
+            var entries = cc.Entries.Include(e => e.Tags)
+                .Where(d => d.Date >= from && d.Date <= to)
                 .OrderBy(d => d.Date)
                 .ToList();
 
@@ -45,7 +50,9 @@ namespace Kalendarz
 
             Debug.WriteLine("Getting highlihtInfo for day " + day.ToShortDateString());
 
-            var elt = cc.Entries.Include(e => e.Tags).AsEnumerable().Where(d => d.Date == day)
+            var elt = cc.Entries.Include(e => e.Tags)
+                .Where(d => d.Date == day)
+                .AsEnumerable()
                 .FirstOrDefault(new Entry());
 
             return elt != null ? elt.HighlightInfo : new HighlightInfo();
@@ -55,23 +62,40 @@ namespace Kalendarz
         public Entry GetDayEntry(DateTime date)
         {
             using CalendarContext cc = new CalendarContext();
-            Entry elt = cc.Entries.Include(e => e.Tags).AsEnumerable().Where(d => d.Date == date).FirstOrDefault(
-                new Entry
-                {
-                    Date = date
-                });
+
+            Entry elt = cc.Entries.Include(e => e.Tags)
+                .Where(d => d.Date == date).AsEnumerable().FirstOrDefault(
+                    new Entry
+                    {
+                        Date = date
+                    });
             return elt;
         }
 
         public void SaveDayEntry(Entry entry)
         {
             using CalendarContext cc = new CalendarContext();
-            var has = cc.Entries.AsQueryable().Any(d => d.Id == entry.Id);
+            var has = cc.Entries.Any(d => d.Id == entry.Id);
 
-            if (has) cc.Entries.Update(entry);
+            if (entry.Content == "")
+                entry.IsDone = false;
+
+            if (has)
+            {
+                var idList = entry.Tags.Select(t => t.Id).ToList();
+                cc.Tags.RemoveRange(
+                    cc.Tags
+                        .Where(t => t.EntryId == entry.Id)
+                        .Where(t => !idList.Contains(t.Id))
+                );
+                // cc.SaveChanges();
+
+                cc.Entries.Update(entry);
+            }
+
             else
             {
-                if (entry.Content == "") return;
+                if (entry.Content == "" && entry.Tags.Count == 0) return;
                 cc.Entries.Add(entry);
             }
 
