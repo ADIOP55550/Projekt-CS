@@ -180,7 +180,7 @@ namespace Kalendarz
 
                 var label = new Label();
                 label.Font = new Font(label.Font.Name, label.Font.Size + 2);
-                label.Text = day.ToString();
+                label.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(day);
                 calendarGrid.Controls.Add(label);
             }
         }

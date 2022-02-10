@@ -10,7 +10,7 @@
 - [x] Edytor notatek
 - [x] ? Wsparcie dla MarkDowna
 - [x] ? Usuwanie notatek
-- [ ] Gwiazdkowanie notatek
+- [-] Gwiazdkowanie notatek
 - [x] Dodawanie tagów
 - [x] Usuwanie tagów
 - [x] Przypisywanie tagów

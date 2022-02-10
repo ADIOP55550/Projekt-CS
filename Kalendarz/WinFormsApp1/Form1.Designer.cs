@@ -252,6 +252,7 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
@@ -305,6 +306,7 @@
             // 
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 43);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -322,7 +324,7 @@
             this.currentDayLabel.Name = "currentDayLabel";
             this.currentDayLabel.Size = new System.Drawing.Size(726, 94);
             this.currentDayLabel.TabIndex = 8;
-            this.currentDayLabel.Text = "Your Tags List";
+            this.currentDayLabel.Text = "Dzien";
             this.currentDayLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // CurrMonthPanel
@@ -413,6 +415,7 @@
             // 
             // EditorPanel
             // 
+            this.EditorPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.EditorPanel.BackColor = System.Drawing.Color.White;
             this.EditorPanel.Controls.Add(this.editorSplit);
             this.EditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -460,6 +463,7 @@
             this.panel2.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuPopup;
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.AutoScroll = true;
+            this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.BackColor = System.Drawing.Color.Tan;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.textBox1);
@@ -485,7 +489,7 @@
             this.textBox1.Location = new System.Drawing.Point(20, 20);
             this.textBox1.Margin = new System.Windows.Forms.Padding(30, 3, 30, 3);
             this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceholderText = "Name";
+            this.textBox1.PlaceholderText = "Nazwa taga";
             this.textBox1.Size = new System.Drawing.Size(210, 27);
             this.textBox1.TabIndex = 1;
             // 
@@ -498,7 +502,7 @@
             this.highlightcheckbox.Padding = new System.Windows.Forms.Padding(6);
             this.highlightcheckbox.Size = new System.Drawing.Size(207, 36);
             this.highlightcheckbox.TabIndex = 4;
-            this.highlightcheckbox.Text = "Highlight";
+            this.highlightcheckbox.Text = "Użyj jako tło";
             this.highlightcheckbox.UseVisualStyleBackColor = false;
             // 
             // panel5
@@ -519,7 +523,7 @@
             this.priorityLabel.Name = "priorityLabel";
             this.priorityLabel.Size = new System.Drawing.Size(210, 15);
             this.priorityLabel.TabIndex = 8;
-            this.priorityLabel.Text = "Priority";
+            this.priorityLabel.Text = "Priorytet";
             this.priorityLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // prioritySlider
@@ -568,7 +572,7 @@
             this.ColorLabel.Padding = new System.Windows.Forms.Padding(4);
             this.ColorLabel.Size = new System.Drawing.Size(210, 30);
             this.ColorLabel.TabIndex = 8;
-            this.ColorLabel.Text = "Color";
+            this.ColorLabel.Text = "Kolor";
             this.ColorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ColorLabel.Click += new System.EventHandler(this.ColorLabel_Click);
             // 
@@ -581,7 +585,7 @@
             this.declineButton.Name = "declineButton";
             this.declineButton.Size = new System.Drawing.Size(81, 32);
             this.declineButton.TabIndex = 6;
-            this.declineButton.Text = "Decline";
+            this.declineButton.Text = "Anuluj";
             this.declineButton.UseVisualStyleBackColor = false;
             this.declineButton.Click += new System.EventHandler(this.declineButton_Click);
             // 
@@ -594,7 +598,7 @@
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(82, 32);
             this.confirmButton.TabIndex = 5;
-            this.confirmButton.Text = "Confirm";
+            this.confirmButton.Text = "Zapisz";
             this.confirmButton.UseVisualStyleBackColor = false;
             this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
@@ -615,9 +619,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1532, 839);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.splitContainer1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MinimumSize = new System.Drawing.Size(1200, 820);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
