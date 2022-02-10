@@ -14,11 +14,12 @@ namespace Kalendarz
         private readonly string _styles = Properties.Resources.MarkdownGithubThemeLight;
         private readonly string _stylesDark = Properties.Resources.MarkdownGithubThemeDark;
         private bool _useDarkTheme;
-        private Action SaveCallbackDebounced;
+        private readonly Action _saveCallbackDebounced;
         private DateTime? _selectedDate;
-        private Color bgcolor = Color.White;
+        private CustomTag? editedTag;
+        private Tag? editedTagPreviousState;
 
-        private Image[] capybaras = new[]
+        private readonly Image[] _capybaras =
         {
             Properties.Resources.kapibara1,
             Properties.Resources.kapibara2,
@@ -96,22 +97,16 @@ namespace Kalendarz
             this.SaveNote(this._selectedDate);
         }
 
-        // [DllImport("kernel32.dll", SetLastError = true)]
-        // [return: MarshalAs(UnmanagedType.Bool)]
-        // static extern bool AllocConsole();
-
         public Form1()
         {
             InitializeComponent();
-            // if (AllocConsole() == false)
-            //     throw new Exception("Console could not be allocated.");
 
             panel2.Visible = false;
             currentColorPanel.BackColor = Color.White;
             var now = DateTime.Now;
             var startDate = new DateTime(now.Year, now.Month, 1);
 
-            SaveCallbackDebounced = Util.Debounce(this.SaveCurrentNote, 1000);
+            _saveCallbackDebounced = Util.Debounce(this.SaveCurrentNote, 1000);
 
             this._webBrowser = new WebBrowser();
             _webBrowser.Dock = DockStyle.Fill;
@@ -127,8 +122,6 @@ namespace Kalendarz
             customCalendar1.MonthChanged += OnCustomCalendarMonthChanged;
             customCalendar1.SelectedDayChanged += OnCustomCalendarSelectedDayChanged;
 
-
-
             TranspileMarkdown("");
         }
 
@@ -137,9 +130,7 @@ namespace Kalendarz
             if (e.Current != null)
                 SaveNote(e.Current);
 
-
             flowLayoutPanel1.Controls.Clear();
-
 
             if (e.Next != null)
             {
@@ -150,8 +141,6 @@ namespace Kalendarz
                 ClearTextField();
 
             this._selectedDate = e.Next;
-
-
             customCalendar1.ReloadDay(e.Next);
         }
 
@@ -169,7 +158,11 @@ namespace Kalendarz
             flowLayoutPanel1.Controls.Clear();
             var customTags = entry.Tags.Select(CustomTag.FromTag).ToArray();
             foreach (var customTag in customTags)
+            {
                 customTag.OnDeleted += (sender, args) => SaveCurrentNote();
+                customTag.OnEditRequest += OnTagEdit;
+            }
+
             flowLayoutPanel1.Controls.AddRange(customTags);
 
 
@@ -194,12 +187,12 @@ namespace Kalendarz
                     && (Color) pair.Value.IndicatorBorderColor != Color.Transparent
                     ||
                     pair.Value.IndicatorColor != null
-                    && (Color) pair.Value.IndicatorColor != Color.Transparent 
+                    && (Color) pair.Value.IndicatorColor != Color.Transparent
                     ||
                     pair.Value.HighlightColor != null
                     && (Color) pair.Value.HighlightColor != Color.Transparent
-                ).Select(pair => pair.Key).ToArray();            
-            
+                ).Select(pair => pair.Key).ToArray();
+
             NextMonthCalendar.BoldedDates = DaysService.GetInstance()
                 .GetHighlightInfosForMonth(time.AddMonths(1).Year, time.AddMonths(1).Month)
                 .Where(pair =>
@@ -207,7 +200,7 @@ namespace Kalendarz
                     && (Color) pair.Value.IndicatorBorderColor != Color.Transparent
                     ||
                     pair.Value.IndicatorColor != null
-                    && (Color) pair.Value.IndicatorColor != Color.Transparent 
+                    && (Color) pair.Value.IndicatorColor != Color.Transparent
                     ||
                     pair.Value.HighlightColor != null
                     && (Color) pair.Value.HighlightColor != Color.Transparent
@@ -236,7 +229,7 @@ namespace Kalendarz
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            this.SaveCallbackDebounced();
+            this._saveCallbackDebounced();
             TranspileMarkdown(((RichTextBox) sender).Text);
         }
 
@@ -285,26 +278,43 @@ namespace Kalendarz
                 return;
             }
 
+            if (editedTag != null)
+            {
+                // edit
+
+                editedTag.Title = textBox1.Text;
+                editedTag.Highlight = highlightcheckbox.Checked;
+                editedTag.Priority = prioritySlider.Value;
+                editedTag.BackColor = currentColorPanel.BackColor;
+
+                editedTag = null;
+                editedTagPreviousState = null;
+
+                textBox1.Clear();
+                currentColorPanel.BackColor = Color.White;
+                prioritySlider.Value = 0;
+                panel2.Visible = false;
+
+                SaveCurrentNote();
+
+                return;
+            }
+
 
             CustomTag newtag = new CustomTag();
 
             newtag.OnDeleted += (sender, args) => SaveCurrentNote();
+            newtag.OnEditRequest += this.OnTagEdit;
 
             newtag.Title = textBox1.Text.Trim();
-            textBox1.Clear();
-            newtag.BackColor = bgcolor;
-            var brightness = bgcolor.GetBrightness();
-            MessageBox.Show(brightness.ToString());
-            newtag.ForeColor = brightness > 0.4 ? Color.Black : Color.White;
+            newtag.BackColor = currentColorPanel.BackColor;
+            newtag.ForeColor = currentColorPanel.BackColor.GetBrightness() > 0.4 ? Color.Black : Color.White;
             newtag.Priority = prioritySlider.Value;
-            if (highlightcheckbox.Checked)
-            {
-                newtag.Highlight = true;
-            }
+            if (highlightcheckbox.Checked) newtag.Highlight = true;
 
             flowLayoutPanel1.Controls.Add(newtag);
 
-
+            textBox1.Clear();
             currentColorPanel.BackColor = Color.White;
             prioritySlider.Value = 0;
             panel2.Visible = false;
@@ -312,10 +322,37 @@ namespace Kalendarz
             SaveCurrentNote();
         }
 
+        private void OnTagEdit(object? sender, EventArgs e)
+        {
+            var editedTag = ((CustomTag) sender).Tag;
+
+            this.editedTagPreviousState = (Tag) editedTag.Clone();
+            this.editedTag = (CustomTag) sender;
+
+            panel2.Visible = true;
+            highlightcheckbox.Checked = editedTag.Highlight;
+            textBox1.Text = editedTag.Name;
+            prioritySlider.Value = editedTag.Priority;
+            currentColorPanel.BackColor = ColorTranslator.FromHtml(editedTag.Color);
+        }
+
         private void declineButton_Click(object sender, EventArgs e)
         {
+            if (editedTag != null)
+            {
+                // restore state
+
+                editedTag.Title = editedTagPreviousState!.Name;
+                editedTag.Highlight = editedTagPreviousState.Highlight;
+                editedTag.Priority = editedTagPreviousState.Priority;
+                editedTag.BackColor = ColorTranslator.FromHtml(editedTagPreviousState.Color);
+
+                editedTag = null;
+                editedTagPreviousState = null;
+            }
+
             panel2.Visible = false;
-            bgcolor = Color.Transparent;
+            currentColorPanel.BackColor = Color.Transparent;
             textBox1.Clear();
             prioritySlider.Value = 0;
         }
@@ -324,14 +361,15 @@ namespace Kalendarz
         {
             ColorDialog cd = new ColorDialog();
 
+            cd.Color = currentColorPanel.BackColor;
+
             cd.AllowFullOpen = true;
             cd.AnyColor = true;
             cd.FullOpen = true;
 
             cd.ShowDialog();
 
-            bgcolor = cd.Color;
-            currentColorPanel.BackColor = bgcolor;
+            currentColorPanel.BackColor = cd.Color;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -380,25 +418,18 @@ namespace Kalendarz
 
         private void kapibaraLabel_Click(object sender, EventArgs e)
         {
-            Form kapibaraForm = new Form();
+            var capybaraForm = new Form();
 
-            kapibaraForm.StartPosition = FormStartPosition.CenterParent;
-            kapibaraForm.BackColor = Color.White;
-            kapibaraForm.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            kapibaraForm.Text = "Twoja kapibara";
-            kapibaraForm.ControlBox = true;
+            capybaraForm.StartPosition = FormStartPosition.CenterParent;
+            capybaraForm.BackColor = Color.White;
+            capybaraForm.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            capybaraForm.Text = "Twoja kapibara";
+            capybaraForm.ControlBox = true;
             Random r = new Random();
-            kapibaraForm.BackgroundImage = capybaras[r.Next(capybaras.Length)];
-            kapibaraForm.BackgroundImageLayout = ImageLayout.Zoom;
+            capybaraForm.BackgroundImage = _capybaras[r.Next(_capybaras.Length)];
+            capybaraForm.BackgroundImageLayout = ImageLayout.Zoom;
 
-            // var pictureBox = new PictureBox();
-            // pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-            // pictureBox.Dock = DockStyle.Fill;
-            // Random r = new Random();
-            // pictureBox.Image = capybaras[r.Next(capybaras.Length)];
-            // kapibaraForm.Controls.Add(pictureBox);
-
-            kapibaraForm.ShowDialog();
+            capybaraForm.ShowDialog();
         }
     }
 }

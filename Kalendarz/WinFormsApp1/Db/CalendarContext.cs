@@ -70,7 +70,7 @@ namespace Kalendarz.Db
 
                 entity.Property(e => e.Color)
                     .IsRequired()
-                    .HasMaxLength(8)
+                    .HasMaxLength(16)
                     .HasColumnName("color")
                     .HasDefaultValue("FFFFFFFF")
                     .IsFixedLength(true);

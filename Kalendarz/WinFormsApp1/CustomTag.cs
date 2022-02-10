@@ -18,12 +18,25 @@ namespace Kalendarz
         /// </summary>
         private static readonly object s_deleted = new();
 
+        /// <summary>
+        /// Open to edit event sentinel type
+        /// </summary>
+        private static readonly object s_edit = new();
+
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
         public event EventHandler? OnDeleted
         {
             add => Events.AddHandler(s_deleted, value);
             remove => Events.RemoveHandler(s_deleted, value);
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        public event EventHandler? OnEditRequest
+        {
+            add => Events.AddHandler(s_edit, value);
+            remove => Events.RemoveHandler(s_edit, value);
         }
 
         private int _priority;
@@ -77,13 +90,13 @@ namespace Kalendarz
 
         protected int Id;
 
-        public Tag Tag => new Tag
+        public new Tag Tag => new()
         {
             Name = label1.Text,
             Id = this.Id,
             Color = ColorTranslator.ToHtml(this.BackColor),
             Priority = (sbyte) this.Priority,
-            Highlight = (bool) this.Highlight, // todo
+            Highlight = (bool) this.Highlight,
         };
 
         public static CustomTag FromTag(Tag tag)
@@ -99,6 +112,11 @@ namespace Kalendarz
             newTag.Highlight = tag.Highlight;
 
             return newTag;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            ((EventHandler?) Events[s_edit])?.Invoke(this, null!);
         }
     }
 }

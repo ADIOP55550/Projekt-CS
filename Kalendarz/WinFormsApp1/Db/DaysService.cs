@@ -113,11 +113,22 @@ namespace Kalendarz
 
             using CalendarContext cc = new();
 
-            var entries = cc.Entries.Include(e => e.Tags).Where(
-                    d => d.Date > from && d.Date < to
-                )
-                .OrderBy(d => d.Date)
-                .ToList();
+            List<Entry> entries;
+            try
+            {
+                entries = cc.Entries.Include(e => e.Tags).Where(
+                        d => d.Date > @from && d.Date < to
+                    )
+                    .OrderBy(d => d.Date)
+                    .ToList();
+            }
+            catch (InvalidOperationException err)
+            {
+                MessageBox.Show(
+                    "Błąd podczas łączenia z bazą danych.\nCzy wpisano poprawne dane i czy baza jest dostępna?");
+                Environment.Exit(1);
+                return null;
+            }
 
 
             foreach (var entry in entries)

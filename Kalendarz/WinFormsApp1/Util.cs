@@ -41,7 +41,7 @@ namespace Kalendarz
      */
         public static Action Debounce(Action callback, int delay = 100)
         {
-            CancellationTokenSource source = null;
+            CancellationTokenSource? source = null;
             return () =>
             {
                 if (source != null)
