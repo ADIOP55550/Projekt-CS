@@ -59,5 +59,433 @@ namespace Kalendarz.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap delete {
+            get {
+                object obj = ResourceManager.GetObject("delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_plus___24 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_plus___24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara {
+            get {
+                object obj = ResourceManager.GetObject("kapibara", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara1 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara10 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara11 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara12 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara12", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara13 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara13", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara14 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara14", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara15 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara15", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara16 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara17 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara17", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara18 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara18", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara19 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara19", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara2 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara20 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara21 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara21", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara22 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara22", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara23 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara23", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara3 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara4 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara5 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara6 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara7 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara8 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara8", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kapibara9 {
+            get {
+                object obj = ResourceManager.GetObject("kapibara9", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap left_arrow {
+            get {
+                object obj = ResourceManager.GetObject("left_arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu @media (prefers-color-scheme: dark) {
+        ///  .markdown-body {
+        ///    color-scheme: dark;
+        ///    --color-prettylights-syntax-comment: #8b949e;
+        ///    --color-prettylights-syntax-constant: #79c0ff;
+        ///    --color-prettylights-syntax-entity: #d2a8ff;
+        ///    --color-prettylights-syntax-storage-modifier-import: #c9d1d9;
+        ///    --color-prettylights-syntax-entity-tag: #7ee787;
+        ///    --color-prettylights-syntax-keyword: #ff7b72;
+        ///    --color-prettylights-syntax-string: #a5d6ff;
+        ///    --color-prettylights-syntax-variable: #ffa657;
+        ///    --color- [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string MarkdownGithubTheme {
+            get {
+                return ResourceManager.GetString("MarkdownGithubTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu .markdown-body {
+        ///  color-scheme: dark;
+        ///  -ms-text-size-adjust: 100%;
+        ///  -webkit-text-size-adjust: 100%;
+        ///  margin: 0;
+        ///  color: #c9d1d9;
+        ///  background-color: #0d1117;
+        ///  font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;
+        ///  font-size: 16px;
+        ///  line-height: 1.5;
+        ///  word-wrap: break-word;
+        ///}
+        ///
+        ///.markdown-body .octicon {
+        ///  display: inline-block;
+        ///  fill: currentColor;
+        ///  vertical-align: text-bottom;
+        ///}
+        ///
+        ///.markdown-body h1:hover .anchor .octicon-link:befor [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string MarkdownGithubThemeDark {
+            get {
+                return ResourceManager.GetString("MarkdownGithubThemeDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu .markdown-body {
+        ///  -ms-text-size-adjust: 100%;
+        ///  -webkit-text-size-adjust: 100%;
+        ///  margin: 0;
+        ///  color: #24292f;
+        ///  background-color: #ffffff;
+        ///  font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;
+        ///  font-size: 16px;
+        ///  line-height: 1.5;
+        ///  word-wrap: break-word;
+        ///}
+        ///
+        ///.markdown-body .octicon {
+        ///  display: inline-block;
+        ///  fill: currentColor;
+        ///  vertical-align: text-bottom;
+        ///}
+        ///
+        ///.markdown-body h1:hover .anchor .octicon-link:before,
+        ///.markdown-body h2:h [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string MarkdownGithubThemeLight {
+            get {
+                return ResourceManager.GetString("MarkdownGithubThemeLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu 
+        ////* ----- Global settings ----------------------------------------------- {{{ */
+        ///
+        ///:root {
+        ///  /* --- Colors --- */
+        ///
+        ///  --background-color: #fff;
+        ///
+        ///  --color-text: #1b2733;
+        ///  --color-text-secondary: #637282;
+        ///  --color-link: #0070e0;
+        ///  --color-sidenote: #616970;
+        ///
+        ///  --highlight-red: #ea9999;
+        ///  --highlight-yellow: #ffe599;
+        ///  --highlight-green: #b6d7a8;
+        ///  --highlight-blue: #a4c2f4;
+        ///  --highlight-purple: #b4a7d6;
+        ///
+        ///  --color-inline-code: #1b2733;
+        ///  --color-inline-code-bg: #f3f3f8;
+        ///
+        ///  --color-border: #dfdfd0;
+        ///  --color [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string MarkdownPandocTheme {
+            get {
+                return ResourceManager.GetString("MarkdownPandocTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap open {
+            get {
+                object obj = ResourceManager.GetObject("open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pobrane__1_ {
+            get {
+                object obj = ResourceManager.GetObject("pobrane__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pustyPiksel {
+            get {
+                object obj = ResourceManager.GetObject("pustyPiksel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap right_arrow {
+            get {
+                object obj = ResourceManager.GetObject("right_arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap save {
+            get {
+                object obj = ResourceManager.GetObject("save", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

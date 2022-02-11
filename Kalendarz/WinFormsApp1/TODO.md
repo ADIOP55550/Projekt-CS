@@ -1,19 +1,19 @@
 ﻿# Zasoby
 ## TODO
 
-- [ ] Połączenie z bazą danych
-- [ ] Jakiś ORM ==(Jaki?)==
-- [ ] [Custom kontrolka](./CustomCalendar.cs) do kalendarza
-- [ ] Podświetlanie dowolnych dat
-- [ ] Kropka przy datach
-- [ ] Gwiazdka przy datach (może zamieniać kropkę)
-- [ ] Edytor notatek
-- [ ] ? Wsparcie dla MarkDowna
-- [ ] ? Usuwanie notatek
-- [ ] Gwiazdkowanie notatek
-- [ ] Dodawanie tagów
-- [ ] Usuwanie tagów
-- [ ] Przypisywanie tagów
+- [x] Połączenie z bazą danych
+- [x] Jakiś ORM
+- [x] [Custom kontrolka](./CustomCalendar.cs) do kalendarza
+- [x] Podświetlanie dowolnych dat
+- [x] Kropka przy datach
+- [x] Gwiazdka przy datach (może zamieniać kropkę)
+- [x] Edytor notatek
+- [x] ? Wsparcie dla MarkDowna
+- [x] ? Usuwanie notatek
+- [-] Gwiazdkowanie notatek
+- [x] Dodawanie tagów
+- [x] Usuwanie tagów
+- [x] Przypisywanie tagów
 - [ ] ...
 
 
